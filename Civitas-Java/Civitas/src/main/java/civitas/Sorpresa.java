@@ -10,7 +10,7 @@ package civitas;
  * @author elena
  */
 public class Sorpresa {
-    private String nombre = null;
+    private String nombre;
     
     Sorpresa(String n){
         nombre = n;

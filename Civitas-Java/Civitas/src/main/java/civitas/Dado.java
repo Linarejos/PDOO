@@ -8,9 +8,10 @@ package civitas;
 import java.util.Random;
 
 /**
- *
  * @author elena
+ * @date 26/09/2019
  */
+
 public class Dado {    
     static final private Dado instance = new Dado();
     static private int SalidaCarcel;

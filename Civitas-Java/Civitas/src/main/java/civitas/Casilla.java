@@ -12,7 +12,7 @@
 package civitas;
 
 public class Casilla {
-    private static String nombre;
+    private String nombre;
     
     Casilla(String nombre){
         this.nombre = nombre;

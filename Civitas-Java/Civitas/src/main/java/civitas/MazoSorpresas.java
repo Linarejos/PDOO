@@ -6,8 +6,8 @@
 package civitas;
 
 /**
- *
  * @author elena
+ * @date 26/09/2019
  */
 
 import java.util.ArrayList;
@@ -23,8 +23,8 @@ public class MazoSorpresas {
     Diario diariomazo = Diario.getInstance();
     
     private void init(){
-        sorpresas = null;
-        cartasEspeciales = null;
+        sorpresas = new ArrayList();
+        cartasEspeciales = new ArrayList();
         barajada = false;
         usadas = 0;
     }
@@ -72,7 +72,7 @@ public class MazoSorpresas {
 
             Sorpresa temp = sorpresas.get(i);
             sorpresas.set(i, sorpresas.get(segunda));
-            sorpresas.set(sorpresas.indexOf(segunda), temp);
+            sorpresas.set(segunda, temp);
         } 
     }
     
