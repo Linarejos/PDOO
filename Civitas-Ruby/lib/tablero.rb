@@ -3,11 +3,11 @@
 # and open the template in the editor.
 # encoding:utf-8
 
+require_relative "casilla"
+
 module Civitas
   class Tablero
     def initialize(numCasillaCarcel)
-      midiario = Diario.instance
-      midado = Dado.instance
       
       if(numCasillaCarcel >= 1)
         @numCasillaCarcel = numCasillaCarcel
@@ -46,23 +46,29 @@ module Civitas
     end
     
     def aniadecasilla(casilla)
-      carcel = new Casilla("Carcel")
-      
+            
       if @casillas.length == @numCasillaCarcel
+        carcel = Casilla.new("carcel")
         @casillas << carcel
       end
       
       @casillas << casilla
       
-      if @casillas.length.eq?(@numCasillaCarcel)
+      if @casillas.length == @numCasillaCarcel
+        carcel = Casilla.new("carcel")
         @casillas << carcel
       end
     end
     
     def aniadejuez
-      juez = new Casilla("Juez")
+      for juez in @casillas do
+        if juez.nombre.eql("Juez")
+          @tieneJuez = true
+        end
+      end
       
       if !@tieneJuez
+        juez = Casilla.new("juez")
         @casillas << juez
         @tieneJuez = true
       end

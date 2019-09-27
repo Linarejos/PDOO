@@ -2,6 +2,7 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 require 'singleton'
+require_relative "diario"
 
 module Civitas
   class Dado
@@ -16,7 +17,7 @@ module Civitas
     
     public
     def tirar
-      if !debug
+      if !@debug
         @ultimoResultado = rand(7)
       else
         @ultimoResultado = 1

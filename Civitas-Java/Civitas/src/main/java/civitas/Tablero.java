@@ -38,7 +38,7 @@ public class Tablero {
             if(casillas.get(i).getNombre() == "Juez")
                 tieneJuez = true;
         }
-        tieneJuez=true;
+        //tieneJuez=true;
         
         if(casillas.size() > this.numCasillaCarcel && tieneJuez)
             return true;        
