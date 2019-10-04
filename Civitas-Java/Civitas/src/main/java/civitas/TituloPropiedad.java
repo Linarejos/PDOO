@@ -24,7 +24,16 @@ public class TituloPropiedad {
     private Jugador propietario;
     
     TituloPropiedad(String nom, float ab, float fr, float hb, float pc,float pe){
-        throw new UnsupportedOperationException("No implementado"); 
+        this.nombre = nom;
+        this.alquilerBase = ab;
+        this.factorRevalorizacion = fr;
+        this.hipotecaBase = hb;
+        this.precioCompra = pc;
+        this.precioEdificar = pe;
+        this.propietario = null;
+        this.numCasas = 0;
+        this.numHoteles = 0;
+        this.hipotecado = false;
     }
     
     void actualizaPropietarioPorConversion(Jugador jugador){
@@ -64,7 +73,7 @@ public class TituloPropiedad {
     }
     
     float getImporteCancelarHipoteca(){
-        throw new UnsupportedOperationException("No implementado"); 
+        return getImporteHipoteca()*factorInteresesHipoteca;
     }
     
     private float getImporteHipoteca(){
@@ -84,7 +93,15 @@ public class TituloPropiedad {
     }
     
     private float getPrecioAlquiler(){
-        throw new UnsupportedOperationException("No implementado"); 
+        float precioAlquiler = (float)(this.alquilerBase*(1+(this.numCasas*0.5)+(this.numHoteles*2.5)));
+        
+        //Si no tiene dinero, bancarrota y fin juego
+        
+        if(hipotecado || propietarioEncarcelado()){
+            precioAlquiler = 0;
+        }
+        
+        return precioAlquiler;
     }
     
     float getPrecioCompra(){
@@ -123,7 +140,18 @@ public class TituloPropiedad {
         throw new UnsupportedOperationException("No implementado"); 
     }
     
+    @Override
     public String toString(){
-        throw new UnsupportedOperationException("No implementado"); 
+        return "Nombre : " + this.nombre + 
+                "\nAlquiler Base : " + this.alquilerBase +
+                "\nFactor Revalorización : " + this.factorRevalorizacion +
+                "\nHipoteca Base : " + this.hipotecaBase + 
+                "\nPrecio Compra : " + this.precioCompra +
+                "\nPrecio Edificar : " + this.precioEdificar +
+                "\nPropietario : " + this.propietario +
+                "\nNumero Casas : " + this.numCasas +
+                "\nNumero Hoteles : " + this.numHoteles +
+                "\nHipotecado : " + this.hipotecado;
+        
     }
 }
