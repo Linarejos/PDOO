@@ -11,4 +11,8 @@ package civitas;
  * Enumerado que representa todos los tipos de casillas del juego
  */
 
-enum TipoCasilla {CALLE, SORPRESA, JUEZ, IMPUESTO, DESCANSO}
+public enum TipoCasilla {CALLE, 
+                         SORPRESA, 
+                         JUEZ, 
+                         IMPUESTO, 
+                         DESCANSO}

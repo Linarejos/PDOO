@@ -12,4 +12,4 @@ package civitas;
  * Enumerado que representa las distintas operaciones del juego
  */
 
-enum Operaciones_juego {AVANZAR, COMPRAR, GESTIONAR, SALIR_CARCEL, PASAR_TURNO}
+enum OperacionesJuego {AVANZAR, COMPRAR, GESTIONAR, SALIR_CARCEL, PASAR_TURNO}

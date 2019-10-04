@@ -18,6 +18,11 @@ public class Casilla {
     private float importe;
     private String nombre;
     
+    private TipoCasilla tipo;
+    private TituloPropiedad tituloPropiedad; //tipo = CALLE
+    private Sorpresa sorpresa;  //tipo = Sorpresa
+    private MazoSorpresas mazo; //tipo = Sorpresa
+    
     Casilla(String nombre){
         this.nombre = nombre;
     }
@@ -76,6 +81,7 @@ public class Casilla {
         throw new UnsupportedOperationException("No implementado");
     }
     
+    @Override
     public String toString(){
         throw new UnsupportedOperationException("No implementado");
     }

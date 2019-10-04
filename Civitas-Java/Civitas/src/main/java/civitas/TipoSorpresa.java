@@ -12,4 +12,9 @@
 
 package civitas;
 
-enum TipoSorpresa {IRCARCEL, IRCASILLA, PAGARCOBRAR, PORCASAHOTEL, PORJUGADOR, SALIRCARCEL}
+public enum TipoSorpresa {IRCARCEL, 
+                          IRCASILLA, 
+                          PAGARCOBRAR, 
+                          PORCASAHOTEL, 
+                          PORJUGADOR, 
+                          SALIRCARCEL}

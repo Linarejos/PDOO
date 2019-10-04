@@ -10,4 +10,8 @@ package civitas;
  * @author elena
  * @date 20/09/2019
  */
-enum EstadosJuego { INICIO_TURNO, DESPUES_CARCEL, DESPUES_AVANZAR, DESPUES_COMPRAR, DESPUES_GESTIONAR }
+public enum EstadosJuego {INICIO_TURNO, 
+                          DESPUES_CARCEL, 
+                          DESPUES_AVANZAR, 
+                          DESPUES_COMPRAR, 
+                          DESPUES_GESTIONAR }

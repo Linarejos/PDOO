@@ -20,7 +20,7 @@ public class Tablero {
     private boolean tieneJuez;
     
     //Constructor
-    Tablero(int numCasillaCarcel){
+    public Tablero(int numCasillaCarcel){
         
          if(numCasillaCarcel >= 1)
             this.numCasillaCarcel = numCasillaCarcel;

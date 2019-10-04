@@ -13,13 +13,13 @@ import java.util.Random;
  */
 
 public class Dado {    
-    static final private Dado instance = new Dado();
-    static private int SalidaCarcel;
+    private static final Dado instance = new Dado();
+    private static int SalidaCarcel = 5;
     private int random;
     private int ultimoResultado;
     private boolean debug;
       
-    static Dado getInstance(){
+    public static Dado getInstance(){
         return instance;
     }
   

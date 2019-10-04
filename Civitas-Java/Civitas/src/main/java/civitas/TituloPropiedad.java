@@ -21,6 +21,7 @@ public class TituloPropiedad {
     private int numHoteles;
     private float precioCompra;
     private float precioEdificar;
+    private Jugador propietario;
     
     TituloPropiedad(String nom, float ab, float fr, float hb, float pc,float pe){
         throw new UnsupportedOperationException("No implementado"); 
