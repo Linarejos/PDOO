@@ -49,7 +49,7 @@ public class MazoSorpresas {
     
     Sorpresa siguiente(){
         if(!barajada || usadas == sorpresas.size()){
-            if(!debug){
+            if(!debug){                
                 barajar();
                 usadas = 0;
                 barajada = true;

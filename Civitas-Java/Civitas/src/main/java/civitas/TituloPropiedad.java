@@ -151,9 +151,8 @@ public class TituloPropiedad {
         if(esEsteElPropietario(jugador) && !getHipotecado()){
             jugador.recibe(getPrecioVenta());
             propietario = null;
-            //Se eliminan las casas y hoteles
-            //quitar del jugador la propiedad en conreto
-            jugador.vender();   //se vende algo
+            numCasas = 0;
+            numHoteles = 0;
             return true;
         }
         
