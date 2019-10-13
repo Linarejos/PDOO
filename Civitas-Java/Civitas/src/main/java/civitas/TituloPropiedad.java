@@ -82,7 +82,7 @@ public class TituloPropiedad {
         }
     }
     
-    private boolean propietarioEncarcelado(){ return propietario.encarcelado; }
+    private boolean propietarioEncarcelado(){ return propietario.isEncarcelado(); }
     
     int cantidadCasasHoteles(){ return numCasas + numHoteles; }
     
