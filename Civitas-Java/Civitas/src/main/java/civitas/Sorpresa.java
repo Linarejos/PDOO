@@ -86,18 +86,17 @@ public class Sorpresa {
     }
     
     private void aplicarAJugador_irCarcel(int actual, ArrayList<Jugador> todos){
-        Jugador jugador = todos.get(actual);
-        
-        if(actual < todos.size()){
+       
+        if(jugadorCorrecto(actual, todos)){
             informe(actual, todos);
-            jugador.encarcelar(5);
+            todos.get(actual).encarcelar(5);
         }
     }
     
     private void aplicarAJugador_irACasilla(int actual, ArrayList<Jugador> todos){
         Jugador jugador = todos.get(actual);
         
-        if(actual < todos.size()){
+        if(jugadorCorrecto(actual, todos)){
             informe(actual, todos);
             int casillaActual = jugador.getNumCasillaActual();
             
@@ -111,7 +110,7 @@ public class Sorpresa {
     private void aplicarAJugador_pagarCobrar(int actual, ArrayList<Jugador> todos){
         Jugador jugador = todos.get(actual);
         
-        if(actual < todos.size()){
+        if(jugadorCorrecto(actual, todos)){
             informe(actual, todos);
             jugador.modificarSaldo(valor);
         }
@@ -120,7 +119,7 @@ public class Sorpresa {
     private void aplicarAJugador_porCasaHotel(int actual, ArrayList<Jugador> todos){
         Jugador jugador = todos.get(actual);
         
-        if(actual < todos.size()){
+        if(jugadorCorrecto(actual, todos)){
             informe(actual, todos);
             jugador.modificarSaldo(valor*jugador.cantidadCasasHoteles());
         }
@@ -128,7 +127,7 @@ public class Sorpresa {
     
     private void aplicarAJugador_porJugador(int actual, ArrayList<Jugador> todos){
                 
-        if(actual < todos.size()){
+        if(jugadorCorrecto(actual, todos)){
             Sorpresa aux, aux1;
             
             informe(actual, todos);
@@ -141,7 +140,7 @@ public class Sorpresa {
             }
             
             
-            aux1 = new Sorpresa(TipoSorpresa.PAGARCOBRAR, valor*(todos.size()-1), "Cobra jugador actual");           
+            aux1 = new Sorpresa(TipoSorpresa.PAGARCOBRAR, valor*(todos.size()-1), "Paga jugador actual");           
             aplicarAJugador(actual, todos);
         }
     }    
@@ -150,9 +149,9 @@ public class Sorpresa {
         Jugador jugador = todos.get(actual);
         boolean salvoconducto = false;
         
-        if(actual < todos.size()){
+        if(jugadorCorrecto(actual, todos)){
             informe(actual, todos);
-            for(int i = 0; i < todos.size() && salvoconducto; i++){
+            for(int i = 0; i < todos.size() && !salvoconducto; i++){
                 if(todos.get(i).tieneSalvoconducto())
                     salvoconducto = true;                
             }
