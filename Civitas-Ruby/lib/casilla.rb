@@ -36,8 +36,7 @@ module Civitas
       Diario.instance.ocurre_evento('El jugador ' + todos[iactual].nombre + 'ha caido en la casilla: \n' + toString)
     end
     
-    def recibejugador_calle(actual, todos)
-      
+    def recibejugador_calle(actual, todos)      
     end
     
     def recibejugador_impuesto(actual, todos)
@@ -54,8 +53,7 @@ module Civitas
       end
     end
     
-    def recibejugador_sorpresa(actual, todos)
-      
+    def recibejugador_sorpresa(actual, todos)      
     end
     
     public 
@@ -92,8 +90,7 @@ module Civitas
       actual < todos.lenght
     end
     
-    def recibejugador(actual, todos)
-      
+    def recibejugador(actual, todos)      
     end
     
     def to_s

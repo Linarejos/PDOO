@@ -28,7 +28,8 @@ public class CivitasJuego {
             jugadores.add(new Jugador(n));
         }
         
-        gestorEstados.estadoInicial();
+        gestorEstados = new GestorEstados();
+        estado = gestorEstados.estadoInicial();
         
         indiceJugador = Dado.getInstance().tirar();
         mazo = new MazoSorpresas();
