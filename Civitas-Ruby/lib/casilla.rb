@@ -59,6 +59,7 @@ module Civitas
     public 
     def self.new_casilla(nombre)
       init
+      @tipo = Civitas::TipoCasilla::DESCANSO
       new(nombre, nil, 0, -1, nil)      
     end
     

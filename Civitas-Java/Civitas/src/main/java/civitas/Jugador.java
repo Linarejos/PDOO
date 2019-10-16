@@ -142,9 +142,9 @@ public class Jugador implements Comparable<Jugador>{
                 if(correcto){
                     propiedades.remove(ip);
                     Diario.getInstance().ocurreEvento("Venta de la propiedad actual");
+                    return true;
                 }
-            }
-            return true;
+            }            
         }
         return false;
     }

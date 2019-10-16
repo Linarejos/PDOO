@@ -25,6 +25,7 @@ public class Casilla {
     
     Casilla(String nombre){ //DESCANSO
         init();
+        this.tipo = TipoCasilla.DESCANSO;
         this.nombre = nombre;
     }
     
