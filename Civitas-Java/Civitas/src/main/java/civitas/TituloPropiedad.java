@@ -42,9 +42,7 @@ public class TituloPropiedad {
     
     private float getPrecioAlquiler(){
         float precioAlquiler = (float)(this.alquilerBase*(1+(this.numCasas*0.5)+(this.numHoteles*2.5)));
-        
-        //Si no tiene dinero, bancarrota y fin juego
-        
+                
         if(hipotecado || propietarioEncarcelado()){
             precioAlquiler = 0;
         }
@@ -54,26 +52,7 @@ public class TituloPropiedad {
     
     private float getPrecioVenta(){
         return getPrecioCompra() + this.getPrecioEdificar()*factorRevalorizacion;
-    }
-    
-    boolean cancelarHipoteca(Jugador jugador){
-        if(!getHipotecado() && esEsteElPropietario(jugador)){
-            jugador.paga(getImporteCancelarHipoteca());
-            hipotecado = false;
-            return true;
-        }        
-        return false;
-    }
-    
-    boolean hipotecar(Jugador jugador){
-        if(!getHipotecado() && esEsteElPropietario(jugador)){
-            jugador.recibe(this.getImporteHipoteca());
-            hipotecado = true;
-            return true;
-        }
-        
-        return false;
-    }
+    }     
     
     void tramitarAlquiler(Jugador jugador){
         if(tienePropietario() && !esEsteElPropietario(jugador)){
@@ -90,40 +69,31 @@ public class TituloPropiedad {
         if(esEsteElPropietario(jugador) && getNumCasas() >= n){
             numCasas -= n;
             return true;
-        }
-        
+        }        
         return false;
     }   
     
     boolean construirCasa(Jugador jugador){
-        boolean construido = false;
-        
-        if(esEsteElPropietario(jugador)){
-            jugador.paga(getPrecioCompra());
-            numCasas++;
-            construido = true;
-        }
-        
-        return construido;
+        throw new UnsupportedOperationException("No implementado");
     }
     
     boolean construirHotel(Jugador jugador){
-        boolean construido = false;
-        
-        if(esEsteElPropietario(jugador)){
-            jugador.paga(getPrecioCompra());
-            numHoteles++;
-            construido = true;
-        }
-        
-        return construido;
+        throw new UnsupportedOperationException("No implementado"); 
     }
     
     boolean comprar(Jugador jugador){
         throw new UnsupportedOperationException("No implementado");
     }
     
+    boolean hipotecar(Jugador jugador){
+        throw new UnsupportedOperationException("No implementado"); 
+    }
+    
     void actualizaPropietarioPorConversion(Jugador jugador){
+        throw new UnsupportedOperationException("No implementado"); 
+    }
+    
+    boolean cancelarHipoteca(Jugador jugador){
         throw new UnsupportedOperationException("No implementado"); 
     }
        

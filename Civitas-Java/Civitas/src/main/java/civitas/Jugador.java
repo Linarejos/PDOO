@@ -77,8 +77,7 @@ public class Jugador implements Comparable<Jugador>{
         if(!isEncarcelado()){
             salvoconducto = sorpresa;
             return true;
-        }
-        
+        }        
         return false;
     }
     
@@ -144,7 +143,9 @@ public class Jugador implements Comparable<Jugador>{
                     Diario.getInstance().ocurreEvento("Venta de la propiedad actual");
                     return true;
                 }
-            }            
+                else return false;
+            }
+            else return false;
         }
         return false;
     }
@@ -154,13 +155,12 @@ public class Jugador implements Comparable<Jugador>{
     private boolean puedeSalirCarcelPagando(){ return saldo >= PrecioLibertad; }
     
     boolean salirCarcelPagando(){
-        if(isEncarcelado()){
+        if(isEncarcelado() && puedeSalirCarcelPagando()){
             paga(PrecioLibertad);
             encarcelado = false;
             Diario.getInstance().ocurreEvento("Salir de la carcel pagando");
             return true;
-        }
-        
+        }        
         return false;
     }
     
@@ -172,6 +172,7 @@ public class Jugador implements Comparable<Jugador>{
         }
         return false;
     }
+    
     boolean pasaPorSalida(){
         modificarSaldo(getPremioPasoSalida());
         Diario.getInstance().ocurreEvento("Pasar por salida");
@@ -235,7 +236,10 @@ public class Jugador implements Comparable<Jugador>{
     private boolean puedoEdificarCasa(TituloPropiedad propiedad){ 
         return saldo > propiedad.getPrecioEdificar() && propiedad.getNumCasas() < CasasMax;
     }
-    private boolean puedoEdificarHotel(TituloPropiedad propiedad){ throw new UnsupportedOperationException("No implementado"); }
+    private boolean puedoEdificarHotel(TituloPropiedad propiedad){ 
+        return saldo > propiedad.getPrecioEdificar() && propiedad.getNumCasas() == CasasMax 
+                && propiedad.getNumHoteles() < HotelesMax;
+    }
     
     boolean cancelarHipoteca(int ip){ throw new UnsupportedOperationException("No implementado"); }
     

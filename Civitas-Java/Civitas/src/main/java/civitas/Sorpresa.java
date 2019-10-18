@@ -85,11 +85,12 @@ public class Sorpresa {
         }                
     }
     
-    private void aplicarAJugador_irCarcel(int actual, ArrayList<Jugador> todos){
-       
+    private void aplicarAJugador_irCarcel(int actual, ArrayList<Jugador> todos){       
+        Jugador jugador = todos.get(actual);
+        
         if(jugadorCorrecto(actual, todos)){
             informe(actual, todos);
-            todos.get(actual).encarcelar(5);
+            jugador.encarcelar(5);
         }
     }
     
@@ -137,8 +138,7 @@ public class Sorpresa {
             for(int i = 0; i < todos.size(); i++){
                 if(i != actual)
                     aplicarAJugador(i, todos);
-            }
-            
+            }            
             
             aux1 = new Sorpresa(TipoSorpresa.PAGARCOBRAR, valor*(todos.size()-1), "Paga jugador actual");           
             aplicarAJugador(actual, todos);
