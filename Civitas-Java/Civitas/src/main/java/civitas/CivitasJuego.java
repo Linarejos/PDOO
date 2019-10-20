@@ -136,7 +136,19 @@ public class CivitasJuego {
     
     public String infoJugadorTexto(){ return jugadores.get(indiceJugador).toString(); }   
         
-    private void avanzaJugador(){ throw new UnsupportedOperationException("No implementado"); }      
+    private void avanzaJugador(){
+        Jugador jugadorActual = jugadores.get(indiceJugador);   //1.1
+        
+        int posicionActual = jugadorActual.getNumCasillaActual();  //1.2
+        int tirada = Dado.getInstance().tirar();    //1.3
+        int posicionNueva = tablero.nuevaPosicion(posicionActual, tirada);  //1.4
+        Casilla casilla = tablero.getCasilla(posicionNueva);    //1.5
+        this.contabilizarPasosPorSalida(jugadorActual); //1.6
+        jugadorActual.moverACasilla(posicionNueva); //1.7
+        casilla.recibeJugador(indiceJugador, jugadores);    //1.8
+        this.contabilizarPasosPorSalida(jugadorActual); //1.9
+    }      
+    
     public boolean comprar(){ throw new UnsupportedOperationException("No implementado"); }   
     public OperacionesJuego siguientePaso(){ throw new UnsupportedOperationException("No implementado"); }
     
