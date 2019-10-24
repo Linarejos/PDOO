@@ -28,7 +28,17 @@ module Civitas
       Diario.instance.ocurre_evento('El jugador ' + todos[iactual].nombre + 'ha caido en la casilla: \n' + toString)
     end
     
-    def recibejugador_calle(actual, todos)      
+    def recibejugador_calle(actual, todos)  
+      if jugadorcorrecto(actual, todos)
+        informe(actual, todos)
+        jugador = todos[actual]
+        
+        if !@titulo.tienepropietario
+          jugador.puedecomprarcasilla
+        else
+          @titulo.tramitaralquiler(jugador)
+        end
+      end
     end
     
     def recibejugador_impuesto(actual, todos)
@@ -45,7 +55,12 @@ module Civitas
       end
     end
     
-    def recibejugador_sorpresa(actual, todos)      
+    def recibejugador_sorpresa(actual, todos)  
+      if jugadorcorrecto(actual, todos)
+        sorpresa = @mazo.siguiente
+        informe(actual, todos)
+        sorpresa.aplicarajugador(actual, todos)
+      end
     end
     
     def init
@@ -123,7 +138,21 @@ module Civitas
       actual < todos.lenght
     end
     
-    def recibejugador(actual, todos)      
+    def recibejugador(actual, todos)    
+      if @tipo == Civitas::TipoCasilla::CALLE
+        recibejugador_calle(actual, todos)
+      else if @tipo == Civitas::TipoCasilla::IMPUESTO
+        recibejugador_impuesto(actual, todos)
+      else if @tipo == Civitas::TipoCasilla::JUEZ
+        recibejugador_juez(actual, todos)
+      else if @tipo == Civitas::TipoCasilla::SORPRESA
+        recibejugador_sorpresa(actual, todos)
+      else
+        informe(actual, todos)
+      end
+      end
+      end
+      end
     end
     
     def to_s
