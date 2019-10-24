@@ -33,6 +33,12 @@ module Civitas
     end
     
     def comprar      
+      jugador_actual = @jugadores[@indiceJugadorActual]
+      num_casilla_actual = jugador_actual.numCasillaActual
+      casilla = @tablero.getcasilla(num_casilla_actual)
+      titulo = casilla.titulo
+      res = jugador_actual.comprar(titulo)
+      res
     end
     
     def construircasa(ip)
@@ -76,7 +82,20 @@ module Civitas
       @jugadores[@indiceJugadorActual].salircarceltirando(ip)
     end
     
-    def siguientepaso      
+    def siguientepaso    
+      jugador_actual = @jugadores[@indiceJugaodrActual]
+      operacion = @gestorestados.operaciones_permitidas(jugador_actual, @estado)
+      
+      if operacion == Civitas::Operaciones_juego::PASAR_TURNO
+        pasarturno
+        siguientepasocompletado(operacion)
+      else if operacion == Civitas::Operaciones_juego::AVANZAR
+        avanzajugador
+        siguientepasocompletado(operacion)
+      end
+      end
+      
+      operacion
     end
     
     def siguientepasocompletado(operacion)

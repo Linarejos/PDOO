@@ -26,20 +26,49 @@ module Civitas
     def actualizapropietarioporconversion(jugador)      
     end
     
-    def cancelarhipoteca(jugador)      
+    def cancelarhipoteca(jugador)
+      result = false
+      
+      if @hipotecado
+        if esesteelpropietario(jugador)
+          @propietario.paga(getimportecancelarhipoteca)
+          @hipotecado = false
+          result = true
+        end
+      end
+      
+      result
     end
     
     def cantidadcasashoteles
       @numCasas + @numHoteles
     end
     
-    def comprar(jugador)      
+    def comprar(jugador)    
+      result = false
+      
+      if !tienepropietario
+        @propietario = jugador
+        result = true
+        @propietario.paga(@precioCompra)
+      end
+      
+      result
     end
     
     def construircasa(jugador)      
     end
     
-    def construirhotel(jugador)      
+    def construirhotel(jugador)  
+      result = false
+      
+      if esesteelpropietario(jugador)
+        @propietario.paga(@precioEdificar)
+        @numHoteles = @numHoteles + 1
+        result = true
+      end
+      
+      result
     end
     
     def derruircasas(n, jugador)      
@@ -64,8 +93,9 @@ module Civitas
     
     def tramitaralquiler(jugador)
       if tienepropietario and !esesteelpropietario(jugador)
-        jugador.pagaAlquiler(getimportehipoteca)
-        @propietario.recibe(getimportehipoteca)
+        precio = getprecioalquiler
+        jugador.pagaAlquiler(precio)
+        @propietario.recibe(precio)
       end
     end
     

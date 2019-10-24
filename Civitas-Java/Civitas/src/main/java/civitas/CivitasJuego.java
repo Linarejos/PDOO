@@ -149,7 +149,28 @@ public class CivitasJuego {
         this.contabilizarPasosPorSalida(jugadorActual); //1.9
     }      
     
-    public boolean comprar(){ throw new UnsupportedOperationException("No implementado"); }   
-    public OperacionesJuego siguientePaso(){ throw new UnsupportedOperationException("No implementado"); }
+    public boolean comprar(){ 
+        Jugador jugadorActual = jugadores.get(indiceJugador);
+        int numCasillaActual = jugadorActual.getNumCasillaActual();
+        Casilla casilla = tablero.getCasilla(numCasillaActual);
+        TituloPropiedad titulo = casilla.getTituloPropiedad();
+        boolean res = jugadorActual.comprar(titulo);       
+        return res;
+    }   
     
+    public OperacionesJuego siguientePaso(){ 
+        Jugador jugadorActual = jugadores.get(indiceJugador);
+        OperacionesJuego operacion = gestorEstados.operacionesPermitidas(jugadorActual, estado);
+        
+        if(operacion == OperacionesJuego.PASAR_TURNO){
+            pasarTurno();
+            siguientePasoCompletado(operacion);
+        }
+        else if(operacion == OperacionesJuego.AVANZAR){
+            avanzaJugador();
+            siguientePasoCompletado(operacion);
+        }
+        
+        return operacion;
+    }
 }

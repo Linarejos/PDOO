@@ -45,7 +45,28 @@ module Civitas
     
     #private :CasasMax, :HotelesMax, :PasoPorSalida, :PasoPorSalida
     
-    def cancelarhipoteca(ip)      
+    def cancelarhipoteca(ip)   
+      result = false
+      
+      if isencarcelado
+        result
+      end
+      
+      if existelapropiedad(ip)
+        propiedad = @propiedades[ip]
+        cantidad = propiedad.getimportecancelarhipoteca
+        puedo_gastar = puedogastar(cantidad)
+        
+        if puedo_gastar
+          result = propiedad.cancelarhipoteca(self)
+          
+          if result
+            Diario.instance.ocurre_evento('El jugador ' + @nombre + 'cancela la hipoteca de la propiedad ' + ip)
+          end
+        end
+      end
+      
+      result
     end
     
     def cantidadcasashoteles
@@ -60,13 +81,72 @@ module Civitas
       @saldo <=> otro.saldo
     end
     
-    def comprar(titulo)      
+    def comprar(titulo)    
+      result = false
+      
+      if isencarcelado
+        result
+      end
+      
+      if @puedeComprar
+        precio = titulo.precioCompra
+        
+        if puedogastar(precio)
+          result = titulo.comprar(self)
+          
+          if result
+            @propiedades << titulo
+            Diario.instance.ocurre_evento('El jugador ' + @nombre + ' compra la propiedad ' + titulo.to_s)
+          end
+          
+          @puedeComprar = false
+        end
+      end
+      
+      result
     end
     
-    def construircasa(ip)      
+    def construircasa(ip)  
+      result = false
+      puedo_edificar_casa = false      
+      
+      if isEncarcelado
+        result
+      else
+        existe = existelapropiedad(ip)
+        if existe
+          propiedad = @propiedades[ip]
+          puedo_edificar_casa = puedoedificarcasa(propiedad)
+          if puedo_edificar_casa
+            result = propiedad.construircasa(self)
+          end
+        end
+      end
+      
+      result
     end
     
-    def construirhotel(ip)      
+    def construirhotel(ip)
+      result = false
+      
+      if isencarcelado
+        result
+      end
+      
+      if existelapropiedad(ip)
+        propiedad = @propiedades[ip]
+        puedo_edificar_hotel = puedoedificarhotel(propiedad)
+        
+        if puedo_edificar_hotel
+          result = propiedad.construirhotel(self)
+          casas_por_hotel = @@CasasPorHotel
+          propiedad.derruircasas(casas_por_hotel, self)
+        end
+        
+        Diario.instance.ocurre_evento('El jugador ' + @nombre + ' construye hotel en la propiedad ' + ip)
+      end
+      
+      result
     end
     
     def enbancarrota
@@ -247,12 +327,29 @@ module Civitas
     end
     
     def puedoedificarcasa(propiedad)
-      @saldo > propiedad.precioEdificar and propiedad.numCasas < @@CasasMax
+      precio = propiedad.precioEdificar
+      puedo_edificar_casa = false
+      
+      if puedogastar(precio) and propiedad.numCasas < @@CasasMax
+        puedo_edificar_casa = true;
+      end
+      
+      puedo_edificar_casa
     end
     
     def puedoedificarhotel(propiedad)
-      @saldo > propiedad.precioEdificar and propiedad.numCasas == @@CasasMax and
-        propiedad.numHoteles < @@HotelesMax
+      puedo_edificar_hotel = false
+      precio = @precioEdificar
+      
+      if puedogastar(precio)
+        if propiedad.numHoteles < @@HotelesMax
+          if propiedad.numCasas >= @@CasasPorHotel
+            puedo_edificar_hotel = true
+          end
+        end
+      end
+      
+      puedo_edificar_hotel
     end
     
     def puedogastar(precio)
