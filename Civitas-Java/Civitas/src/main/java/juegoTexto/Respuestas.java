@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package civitas;
+package juegoTexto;
 
 /**
  * @author elena
- * @date 20/09/2019
- * Enumerado que representa las distintas operaciones del juego
+ * @date 25/10/2019
  */
-
-public enum OperacionesJuego {AVANZAR, COMPRAR, GESTIONAR, SALIR_CARCEL, PASAR_TURNO}
+public enum Respuestas { SI, NO }

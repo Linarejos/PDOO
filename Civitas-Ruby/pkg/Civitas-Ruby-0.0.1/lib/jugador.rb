@@ -43,7 +43,21 @@ module Civitas
             
     public :saldo=
     
-    #private :CasasMax, :HotelesMax, :PasoPorSalida, :PasoPorSalida
+    def self.casas_max
+      @@CasasMax
+    end
+    
+    def self.hoteles_max
+      @@HotelesMax
+    end
+    
+    def self.paso_por_salida
+      @@PasoPorSalida
+    end
+    
+    def self.casas_por_hotel
+      @@CasasPorHotel
+    end
     
     def cancelarhipoteca(ip)   
       result = false
@@ -139,8 +153,8 @@ module Civitas
         
         if puedo_edificar_hotel
           result = propiedad.construirhotel(self)
-          casas_por_hotel = @@CasasPorHotel
-          propiedad.derruircasas(casas_por_hotel, self)
+          casas_hotel = casas_por_hotel
+          propiedad.derruircasas(casas_hotel, self)
         end
         
         Diario.instance.ocurre_evento('El jugador ' + @nombre + ' construye hotel en la propiedad ' + ip)
@@ -206,7 +220,7 @@ module Civitas
     end
     
     def pasaporsalida
-      modificarsaldo(@@PasoPorSalida)
+      modificarsaldo(paso_por_salida)
       Diario.instance.ocurre_evento('Paso por salida')
       true
     end
@@ -330,7 +344,7 @@ module Civitas
       precio = propiedad.precioEdificar
       puedo_edificar_casa = false
       
-      if puedogastar(precio) and propiedad.numCasas < @@CasasMax
+      if puedogastar(precio) and propiedad.numCasas < casas_max
         puedo_edificar_casa = true;
       end
       
@@ -342,8 +356,8 @@ module Civitas
       precio = @precioEdificar
       
       if puedogastar(precio)
-        if propiedad.numHoteles < @@HotelesMax
-          if propiedad.numCasas >= @@CasasPorHotel
+        if propiedad.numHoteles < hoteles_max
+          if propiedad.numCasas >= casas_por_hotel
             puedo_edificar_hotel = true
           end
         end
