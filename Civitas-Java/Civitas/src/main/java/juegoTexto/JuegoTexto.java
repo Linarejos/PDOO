@@ -5,6 +5,10 @@
  */
 package juegoTexto;
 
+import civitas.CivitasJuego;
+import civitas.Dado;
+import java.util.ArrayList;
+
 /**
  * @author elena
  * @date 25/10/2019
@@ -15,7 +19,20 @@ public class JuegoTexto {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        VistaTextual mivista = new VistaTextual();
+        
+        ArrayList<String> nombres = new ArrayList();
+        nombres.add("Elena");
+        nombres.add("Pepe");
+        nombres.add("Juan");
+        nombres.add("Laura");
+        
+        CivitasJuego juego = new CivitasJuego(nombres);
+        
+        Dado dado = Dado.getInstance();
+        dado.setDebug(true);
+        
+        //Comprobar errores que puedan surgir
     }
     
 }

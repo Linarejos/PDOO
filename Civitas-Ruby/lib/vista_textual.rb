@@ -5,10 +5,12 @@
 #encoding:utf-8
 
 require_relative 'operaciones_juego'
+require_relative 'diario'
 require 'io/console'
 
 module Civitas
   class Vista_textual
+    attr_reader :iGestion, :iPropiedad
 
     def mostrar_estado(estado)
       puts estado
@@ -60,21 +62,46 @@ module Civitas
     end
     
     def comprar
+      opciones = Array.new
+      opciones = ['Si', 'No']
+      opcion = menu('¿Desea comprar la calle?', opciones)
+      
+      lista_respuestas = [Civitas::Respuestas::SI, Civitas::Respuestas::NO]
+      
+      lista_respuestas[opcion]
     end
 
     def gestionar
+      
     end
 
     def get_gestion
+      @iGestion
     end
 
     def get_propiedad
+      @iPropiedad
     end
 
     def mostrar_siguiente_operacion(operacion)
+      puts operacion.to_s
     end
 
     def mostrar_eventos
+      while Diario.instance.eventos_pendientes
+        puts Diario.instance.leer_evento
+      end
+    end
+    
+    def salir_carcel
+      opciones = Array.new
+      opciones = ['Pagando', 'Tirando el dado']
+      opcion = menu('Elige la forma para intentar salir de la carcel', 
+               opciones)
+             
+      lista_salidas = [Civitas::SalidasCarcel::PAGANDO, Civitas::SalidasCarcel::TIRANDO]
+      
+      lista_salidas[opcion]
     end
 
     def set_civitas_juego(civitas)
@@ -83,6 +110,11 @@ module Civitas
     end
 
     def actualizar_vista
+      casilla = @juegoModel.getcasillaactual
+      jugador_actual = @juegoModel.getjugadoractual
+      
+      puts casilla.to_s
+      puts jugador_actual.to_s
     end    
   end
 end

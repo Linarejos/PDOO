@@ -9,7 +9,8 @@ module Civitas
       @vista = vista
     end
     
-    def juega      
+    def juega     
+      
     end
   end
 end

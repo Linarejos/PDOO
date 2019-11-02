@@ -52,7 +52,7 @@ public class Dado {
         return rand.nextInt(n);
     }
     
-    void setDebug(boolean d){
+    public void setDebug(boolean d){
         Diario diariodado = Diario.getInstance();
         debug = d;
         
