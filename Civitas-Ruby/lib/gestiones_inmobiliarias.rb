@@ -9,6 +9,6 @@ module Civitas
     CANCELAR_HIPOTECA = :cancelar_hipoteca
     CONSTRUIR_CASA = :construir_casa
     CONSTRUIR_HOTEL = :construir_hotel
-    TERMIANR = :terminar
+    TERMINAR = :terminar
   end
 end
