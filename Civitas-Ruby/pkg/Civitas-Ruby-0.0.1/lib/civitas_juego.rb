@@ -184,6 +184,7 @@ module Civitas
       @indiceJugadorActual = (@indiceJugadorActual+1)%@jugadores.length
     end
     
+    public
     def ranking
       @jugadores.sort
     end
