@@ -30,10 +30,10 @@ public class Controlador {
         
         while(!juego.finalDelJuego()){
             vista.actualizarVista();
-            vista.pausa();
-            vista.mostrarSiguienteOperacion(juego.siguientePaso());
-            
+            vista.pausa();           
             OperacionesJuego siguiente = juego.siguientePaso();
+            
+            vista.mostrarSiguienteOperacion(siguiente);
             if(siguiente != OperacionesJuego.PASAR_TURNO){
                 vista.mostrarEventos();
             }
@@ -44,17 +44,34 @@ public class Controlador {
                         Respuestas r = vista.comprar();
                         
                         if(r == Respuestas.SI){
-                            boolean compra = juego.comprar();
-                            
-                            if(compra)
+                                juego.comprar();
                                 juego.siguientePasoCompletado(siguiente);                            
                         }
                     break;
                     case GESTIONAR:
                         vista.gestionar();
-                        OperacionInmobiliaria operacion_inmo = new OperacionInmobiliaria(vista.getGestion(), vista.getPropiedad());      
-                        if(operacion_inmo.getGestion() == GestionesInmobiliarias.TERMINAR)
-                            juego.siguientePasoCompletado(siguiente);
+                        OperacionInmobiliaria operacion_inmo = new OperacionInmobiliaria(GestionesInmobiliarias.values()[vista.getGestion()], vista.getPropiedad());     
+                        
+                        switch(operacion_inmo.getGestion()){
+                            case TERMINAR:
+                                juego.siguientePasoCompletado(siguiente);
+                            break;
+                            case CANCELAR_HIPOTECA:
+                                juego.cancelarHipoteca(operacion_inmo.getNumPropiedad());
+                            break;
+                            case CONSTRUIR_CASA:
+                                juego.construirCasa(operacion_inmo.getNumPropiedad());
+                            break;
+                            case CONSTRUIR_HOTEL:
+                                juego.construirHotel(operacion_inmo.getNumPropiedad());
+                            break;
+                            case HIPOTECAR:
+                                juego.hipotecar(operacion_inmo.getNumPropiedad());
+                            break;
+                            case VENDER:
+                                juego.vender(operacion_inmo.getNumPropiedad());
+                            break;
+                        }
                     break;
                     case SALIR_CARCEL:                        
                         if(vista.salirCarcel() == SalidasCarcel.PAGANDO)
@@ -67,7 +84,8 @@ public class Controlador {
                 }
             }
             else{
-                //mostrar ranking jugadores
+                //He cambiado la visibilidad del ranking de jugadores
+                juego.ranking();
             }
         }
     }

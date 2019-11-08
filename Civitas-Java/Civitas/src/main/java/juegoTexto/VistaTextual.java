@@ -95,7 +95,15 @@ class VistaTextual {
                         new ArrayList<> (Arrays.asList("Vender","Hipotecar",
                         "Cancelar Hipoteca", "Construir Casa", "Construir hotel",
                         "Terminar")));
-        iPropiedad = juegoModel;
+        
+        ArrayList<String> propiedades = new ArrayList();
+        
+        //He modificado la visibilidad del método getPropiedades y getNombre
+        for(TituloPropiedad t : juegoModel.getJugadorActual().getPropiedades()){
+            propiedades.add(t.getNombre());
+        }
+        
+        iPropiedad = menu("¿Qué propiedad desea gestionar?", propiedades);
     }
 
     public int getGestion(){ return iGestion; }

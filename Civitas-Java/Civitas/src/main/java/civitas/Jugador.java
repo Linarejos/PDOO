@@ -219,13 +219,13 @@ public class Jugador implements Comparable<Jugador>{
     
     protected String getNombre(){ return nombre; }
     
-    int getNumCasillaActual(){ return numCasillaActual; }
+    public int getNumCasillaActual(){ return numCasillaActual; }
     
     private float getPrecioLibertad(){ return PrecioLibertad; }
     
     private float getPremioPasoSalida(){ return PasoPorSalida; }
     
-    protected ArrayList<TituloPropiedad> getPropiedades(){ return propiedades; }    
+    public ArrayList<TituloPropiedad> getPropiedades(){ return propiedades; }    
     
     boolean getPuedeComprar(){ return puedeComprar; }
     

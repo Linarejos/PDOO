@@ -6,6 +6,7 @@
 
 require_relative 'operaciones_juego'
 require_relative 'diario'
+require_relative 'salidas_carcel'
 require 'io/console'
 
 module Civitas
@@ -72,7 +73,18 @@ module Civitas
     end
 
     def gestionar
+      opciones = Array.new
+      opciones = ['Vender', 'Hipotecar', 'Cancelar Hipoteca', 'Construir Casa',
+        'Construir Hotel', 'Terminar']
+      @iGestion = menu('¿Que gestion inmobiliaria desea hacer?', opciones)
       
+      propiedades = Array.new
+      
+      for t in @juegoModel.getjugadoractual.propiedades
+        propiedades << t.nombre
+      end
+      
+      @iPropiedad = menu("¿Que propiedad desea gestionar?", propiedades)
     end
 
     def get_gestion

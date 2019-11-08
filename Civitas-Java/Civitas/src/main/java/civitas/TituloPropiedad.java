@@ -130,7 +130,7 @@ public class TituloPropiedad {
         
     private float getImporteHipoteca(){ return this.hipotecaBase; }
     
-    String getNombre(){ return this.nombre; }
+    public String getNombre(){ return this.nombre; }
     
     int getNumCasas(){ return this.numCasas; }
     

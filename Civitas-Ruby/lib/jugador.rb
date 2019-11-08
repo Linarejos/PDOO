@@ -39,9 +39,9 @@ module Civitas
     
     attr_accessor :saldo
     
-    protected :nombre, :propiedades, :saldo
+    protected :nombre, :saldo
             
-    public :saldo=
+    public :saldo=, :propiedades
     
     def self.casas_max
       @@CasasMax
