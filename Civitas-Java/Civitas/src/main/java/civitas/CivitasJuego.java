@@ -130,7 +130,7 @@ public class CivitasJuego {
         return jugadores;
     }
     
-    public Casilla getCasillaActual(){ return tablero.getCasilla(jugadores.get(indiceJugador).getNumCasillaActual()); }
+    public Casilla getCasillaActual(){ return tablero.getCasilla(getJugadorActual().getNumCasillaActual()); }
     
     public Jugador getJugadorActual(){ return jugadores.get(indiceJugador); }    
     

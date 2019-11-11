@@ -27,12 +27,16 @@ public class JuegoTexto {
         nombres.add("Juan");
         nombres.add("Laura");
         
-        CivitasJuego juego = new CivitasJuego(nombres);
+        CivitasJuego mijuego = new CivitasJuego(nombres);
         
         Dado dado = Dado.getInstance();
+        //Modificada la visibilidad del debug del dado
         dado.setDebug(true);
         
         //Comprobar errores que puedan surgir
+        Controlador con = new Controlador(mijuego, mivista);
+        
+        con.juega();
     }
     
 }

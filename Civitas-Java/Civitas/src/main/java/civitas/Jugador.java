@@ -267,7 +267,7 @@ public class Jugador implements Comparable<Jugador>{
         if(this.existeLaPropiedad(ip)){
             TituloPropiedad propiedad = propiedades.get(ip);    //3
             float cantidad = propiedad.getImporteCancelarHipoteca();    //4
-            boolean  puedoGastar = this.puedoGastar(cantidad);  //5
+            boolean puedoGastar = this.puedoGastar(cantidad);  //5
             
             if(puedoGastar){
                 result = propiedad.cancelarHipoteca(this);
@@ -307,18 +307,25 @@ public class Jugador implements Comparable<Jugador>{
     
     boolean construirCasa(int ip){
         boolean result = false;
-        boolean puedoEdificarCasa = false;
         
         if(isEncarcelado())
             return result;
-        else{
-            boolean existe = existeLaPropiedad(ip);
-            if(existe){
-                TituloPropiedad propiedad = propiedades.get(ip);
-                puedoEdificarCasa = puedoEdificarCasa(propiedad);
-                if(puedoEdificarCasa)
-                    result = propiedad.construirCasa(this);
+        
+        if(existeLaPropiedad(ip)){
+            TituloPropiedad propiedad = propiedades.get(ip);
+            boolean puedoEdificarCasa = this.puedoEdificarCasa(propiedad);
+            
+            float precio = propiedad.getPrecioEdificar();
+            
+            if(puedoGastar(precio) && propiedad.getNumCasas()<getCasasMax()){
+                puedoEdificarCasa = true;
             }
+            
+            if(puedoEdificarCasa){
+                result = propiedad.construirCasa(this);
+            }
+            
+            Diario.getInstance().ocurreEvento("El jugador " + nombre + " construye hotel en la propiedad " + ip);
         }
         
         return result;
@@ -334,6 +341,12 @@ public class Jugador implements Comparable<Jugador>{
             TituloPropiedad propiedad = propiedades.get(ip);
             boolean puedoEdificarHotel = this.puedoEdificarHotel(propiedad);
             
+            float precio = propiedad.getPrecioEdificar();
+            
+            if(puedoGastar(precio) && propiedad.getNumHoteles()<getHotelesMax() && propiedad.getNumCasas()>=getCasasPorHotel()){
+                puedoEdificarHotel = true;
+            }
+            
             if(puedoEdificarHotel){
                 result = propiedad.construirHotel(this);
                 int casasPorHotel = getCasasPorHotel();
@@ -346,7 +359,22 @@ public class Jugador implements Comparable<Jugador>{
         return result;
     }    
     
-    boolean hipotecar(int ip){ throw new UnsupportedOperationException("No implementado"); }            
+    boolean hipotecar(int ip){ 
+        boolean result = false;
+        
+        if(isEncarcelado())
+            return result;
+        
+        if(existeLaPropiedad(ip)){
+            TituloPropiedad propiedad = propiedades.get(ip);
+            result = propiedad.hipotecar(this);            
+        }
+        if(result){
+            Diario.getInstance().ocurreEvento("El jugador " + nombre + " hipoteca la propiedad " + ip);
+        }
+        
+        return result;
+    }            
               
     @Override
     public String toString(){
@@ -354,7 +382,7 @@ public class Jugador implements Comparable<Jugador>{
                "\nSaldo: " + this.saldo +
                "\nEncarcelado: " + this.encarcelado +
                "\nCasilla Actual: " + this.numCasillaActual +
-               "\nPropiedades: " + this.propiedades.toString() +
+               "\nPropiedades: " + this.propiedades.size() +
                "\nPuede Comprar: " + this.puedeComprar +               
                "\nSalvo Conducto: " + this.tieneSalvoconducto();
     }    

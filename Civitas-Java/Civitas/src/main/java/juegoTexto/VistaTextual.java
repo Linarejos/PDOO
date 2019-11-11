@@ -91,11 +91,6 @@ class VistaTextual {
     }
 
     void gestionar(){
-        iGestion = menu("¿Qué gestión inmobiliaria desea hacer?", 
-                        new ArrayList<> (Arrays.asList("Vender","Hipotecar",
-                        "Cancelar Hipoteca", "Construir Casa", "Construir hotel",
-                        "Terminar")));
-        
         ArrayList<String> propiedades = new ArrayList();
         
         //He modificado la visibilidad del método getPropiedades y getNombre
@@ -103,7 +98,15 @@ class VistaTextual {
             propiedades.add(t.getNombre());
         }
         
-        iPropiedad = menu("¿Qué propiedad desea gestionar?", propiedades);
+        iGestion = menu("¿Qué gestión inmobiliaria desea hacer?", 
+                        new ArrayList<> (Arrays.asList("Vender","Hipotecar",
+                        "Cancelar Hipoteca", "Construir Casa", "Construir hotel",
+                        "Terminar")));
+        
+        if(iGestion != 5){
+            iPropiedad = menu("¿Qué propiedad desea gestionar?", propiedades);
+        }
+                
     }
 
     public int getGestion(){ return iGestion; }
