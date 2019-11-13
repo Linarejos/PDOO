@@ -78,7 +78,7 @@ module Civitas
       if numCasilla >= 0 && numCasilla < @casillas.length
         return @casillas[numCasilla]
       else 
-        return null
+        return nil
       end
     end
     

@@ -26,7 +26,7 @@ public class Controlador {
     }
     
     void juega(){
-        vista.setCivitasJuego(juego);   //No se si esto es asi
+        vista.setCivitasJuego(juego);
         
         while(!juego.finalDelJuego()){
             vista.actualizarVista();

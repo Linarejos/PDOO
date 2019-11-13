@@ -4,10 +4,14 @@
 
 #encoding:utf-8
 
+require 'io/console'
+
 require_relative 'operaciones_juego'
+require_relative 'civitas_juego'
+require_relative 'respuestas'
+require_relative 'operacion_inmobiliaria'
 require_relative 'diario'
 require_relative 'salidas_carcel'
-require 'io/console'
 
 module Civitas
   class Vista_textual
@@ -57,15 +61,14 @@ module Civitas
         index += 1
       }
 
-      opcion = lee_entero(lista.length, "\n"+tab+"Elige una opción: ",
-                          tab+"Valor erróneo")
+      opcion = lee_entero(lista.length, tab+'Elige una opcion: ', tab+'Valor erroneo')
       return opcion
     end
     
     def comprar
       opciones = Array.new
       opciones = ['Si', 'No']
-      opcion = menu('¿Desea comprar la calle?', opciones)
+      opcion = menu('Desea comprar la calle', opciones)
       
       lista_respuestas = [Civitas::Respuestas::SI, Civitas::Respuestas::NO]
       
@@ -76,7 +79,7 @@ module Civitas
       opciones = Array.new
       opciones = ['Vender', 'Hipotecar', 'Cancelar Hipoteca', 'Construir Casa',
         'Construir Hotel', 'Terminar']
-      @iGestion = menu('¿Que gestion inmobiliaria desea hacer?', opciones)
+      @iGestion = menu('Que gestion inmobiliaria desea hacer', opciones)
       
       propiedades = Array.new
       
@@ -84,7 +87,7 @@ module Civitas
         propiedades << t.nombre
       end
       
-      @iPropiedad = menu("¿Que propiedad desea gestionar?", propiedades)
+      @iPropiedad = menu("Que propiedad desea gestionar", propiedades)
     end
 
     def get_gestion
@@ -118,7 +121,7 @@ module Civitas
 
     def set_civitas_juego(civitas)
         @juegoModel=civitas
-        self.actualizarVista
+        self.actualizar_vista
     end
 
     def actualizar_vista

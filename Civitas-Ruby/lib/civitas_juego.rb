@@ -58,32 +58,32 @@ module Civitas
       false
     end
     
-    def getcasillaactual
-      @tablero.getcasilla(@jugadores[@indiceJugadorActual].getNumCasillaActual)
+    def getcasillaactual      
+      @tablero.getcasilla(getjugadoractual.numCasillaActual)
     end
     
     def getjugadoractual
-      @jugadores[@indiceJugadorActual]
+      @jugadores.at(@indiceJugadorActual)
     end
     
     def hipotecar(ip)
-      @jugadores[@indiceJugadorActual].hipotecar(ip)
+      getjugadoractual.hipotecar(ip)
     end
     
     def infojugadortexto
-      @jugadores[@indiceJugadorActual].to_s
+      getjugadoractual.to_s
     end
     
     def salircarcelpagando
-      @jugadores[@indiceJugadorActual].salircarcelpagando(ip)
+      getjugadoractual.salircarcelpagando(ip)
     end
     
     def salircarceltirando
-      @jugadores[@indiceJugadorActual].salircarceltirando(ip)
+      getjugadoractual.salircarceltirando(ip)
     end
     
     def siguientepaso    
-      jugador_actual = @jugadores[@indiceJugaodrActual]
+      jugador_actual = getjugadoractual
       operacion = @gestorestados.operaciones_permitidas(jugador_actual, @estado)
       
       if operacion == Civitas::Operaciones_juego::PASAR_TURNO

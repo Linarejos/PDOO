@@ -41,7 +41,7 @@ module Civitas
     
     protected :nombre, :saldo
             
-    public :saldo=, :propiedades
+    public :saldo=, :propiedades, :numCasillaActual
     
     def self.casas_max
       @@CasasMax

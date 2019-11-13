@@ -6,7 +6,7 @@ require_relative 'vista_textual'
 require_relative 'civitas_juego'
 require_relative 'operaciones_juego'
 require_relative 'operacion_inmobiliaria'
-require_relaitve 'gestiones_inmobiliarias'
+require_relative 'gestiones_inmobiliarias'
 
 module Civitas
   class Controlador

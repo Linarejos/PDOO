@@ -10,7 +10,7 @@ module Civitas
     end
     
     attr_reader :num_propiedad, :gestion
-    public :num_porpiedad, :gestion
+    public :num_propiedad, :gestion
     
   end
 end
