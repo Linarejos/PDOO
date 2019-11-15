@@ -52,6 +52,7 @@ public class Dado {
         return rand.nextInt(n);
     }
     
+    //Visibilidad cambiada
     public void setDebug(boolean d){
         Diario diariodado = Diario.getInstance();
         debug = d;

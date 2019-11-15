@@ -224,7 +224,7 @@ public class Jugador implements Comparable<Jugador>{
     private float getPrecioLibertad(){ return PrecioLibertad; }
     
     private float getPremioPasoSalida(){ return PasoPorSalida; }
-    
+    //Cambiada visibilidad
     public ArrayList<TituloPropiedad> getPropiedades(){ return propiedades; }    
     
     boolean getPuedeComprar(){ return puedeComprar; }

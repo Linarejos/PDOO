@@ -125,6 +125,7 @@ public class CivitasJuego {
         return false;
     }
     
+    //Visibilidad cambiada
     public ArrayList<Jugador> ranking(){ 
         Collections.sort(jugadores);
         return jugadores;

@@ -73,7 +73,6 @@ module Civitas
             @juego.siguientepasocompletado(siguiente)
           end
         else
-          #He cambiado la visibilidad del ranking de jugadores
           @juego.ranking
         end
       end
