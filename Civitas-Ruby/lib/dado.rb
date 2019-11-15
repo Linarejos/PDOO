@@ -18,12 +18,12 @@ module Civitas
     public
     def tirar
       if !@debug
-        @ultimoResultado = rand(7)
+        @ultimoResultado = rand(4)
       else
         @ultimoResultado = 1
       end
       
-      return @ultimoResultado
+      @ultimoResultado
     end
     
     def salgodelacarcel
@@ -31,13 +31,17 @@ module Civitas
     end
     
     def quienempieza(n)
-      return rand(n)
+      rand(n)
     end
     
     def setdebug(d)
       @debug = d
       diariodado = Diario.instance
-      diariodado.ocurre_evento("Debug")
+      if d
+        diariodado.ocurre_evento("Debug activo")
+      else
+        diariodado.ocurre_evento("Debug desactivado")
+      end
     end
     
     attr_reader :ultimoResultado

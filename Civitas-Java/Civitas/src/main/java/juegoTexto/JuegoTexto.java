@@ -33,7 +33,6 @@ public class JuegoTexto {
         //Modificada la visibilidad del debug del dado
         dado.setDebug(true);
         
-        //Comprobar errores que puedan surgir
         Controlador con = new Controlador(mijuego, mivista);
         
         con.juega();

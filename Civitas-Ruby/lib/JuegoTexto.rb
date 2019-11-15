@@ -11,17 +11,16 @@ module Civitas
   class JuegoTexto
         
     def self.main
+      mivista = Vista_textual.new
+      
       @nombres = Array.new
       @nombres << 'Elena'
       @nombres << 'Pepe'
       @nombres << 'Laura'
-      @nombres << 'Juan'
-      
-      puts "hola"
-      mivista = Vista_textual.new
+      @nombres << 'Juan'      
       
       @juego = CivitasJuego.new(@nombres)
-      @dado = Dado.instance
+      @dado = Dado.instance      
       @dado.setdebug(true)
       
       @con = Controlador.new(@juego, mivista)

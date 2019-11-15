@@ -16,7 +16,12 @@ require_relative 'salidas_carcel'
 module Civitas
   class Vista_textual
     attr_reader :iGestion, :iPropiedad
-
+    
+    def initialize
+      @iPropiedad = -1
+      @iGestion = -1
+    end
+    
     def mostrar_estado(estado)
       puts estado
     end
@@ -75,19 +80,24 @@ module Civitas
       lista_respuestas[opcion]
     end
 
-    def gestionar
-      opciones = Array.new
-      opciones = ['Vender', 'Hipotecar', 'Cancelar Hipoteca', 'Construir Casa',
-        'Construir Hotel', 'Terminar']
-      @iGestion = menu('Que gestion inmobiliaria desea hacer', opciones)
-      
+    def gestionar      
       propiedades = Array.new
       
       for t in @juegoModel.getjugadoractual.propiedades
         propiedades << t.nombre
       end
+            
+      opciones = Array.new
+      opciones = ['Vender', 'Hipotecar', 'Cancelar Hipoteca', 'Construir Casa',
+        'Construir Hotel', 'Terminar']
+      @iGestion = menu('Que gestion inmobiliaria desea hacer', opciones)
       
-      @iPropiedad = menu("Que propiedad desea gestionar", propiedades)
+      if !propiedades.empty?
+        @iPropiedad = menu("Que propiedad desea gestionar", propiedades)
+      else
+        puts 'No tienes propiedades'
+      end
+      
     end
 
     def get_gestion
@@ -125,11 +135,11 @@ module Civitas
     end
 
     def actualizar_vista
-      casilla = @juegoModel.getcasillaactual
       jugador_actual = @juegoModel.getjugadoractual
+      casilla = @juegoModel.getcasillaactual      
       
-      puts casilla.to_s
-      puts jugador_actual.to_s
+      #puts jugador_actual.to_s
+      #puts casilla.to_s  No muestra la casilla    
     end    
   end
 end

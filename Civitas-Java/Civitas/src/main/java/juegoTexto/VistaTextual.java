@@ -103,8 +103,11 @@ class VistaTextual {
                         "Cancelar Hipoteca", "Construir Casa", "Construir hotel",
                         "Terminar")));
         
-        if(iGestion != 5){
+        if(iGestion != 5 && !propiedades.isEmpty()){
             iPropiedad = menu("¿Qué propiedad desea gestionar?", propiedades);
+        }
+        else{
+            System.out.println("No tienes propiedades");
         }
                 
     }
@@ -130,7 +133,7 @@ class VistaTextual {
     void actualizarVista(){
         Casilla casilla = juegoModel.getCasillaActual();
         Jugador jugadorActual = juegoModel.getJugadorActual();
-        System.out.println("\n" + casilla.toString() + "\n" + jugadorActual.toString());
+        //System.out.println("\n" + casilla.toString() + "\n" + jugadorActual.toString());
     } 
 }
 

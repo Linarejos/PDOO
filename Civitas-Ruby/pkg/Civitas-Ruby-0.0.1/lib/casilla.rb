@@ -8,6 +8,7 @@ require_relative "titulo_propiedad"
 require_relative "sorpresa"
 require_relative "tipo_casilla"
 require_relative "tipo_sorpresa"
+require_relative "jugador"
 
 module Civitas
   class Casilla
@@ -24,8 +25,10 @@ module Civitas
     end
     
     private       
-    def informe(iactual, todos)
-      Diario.instance.ocurre_evento('El jugador ' + todos[iactual].nombre + 'ha caido en la casilla: \n' + toString)
+    def informe(actual, todos)
+      jugador = todos[actual]
+      evento = "El jugador " + "#{jugador.nombre} ha caido en la casilla  #{to_s}"
+      Diario.instance.ocurre_evento(evento)
     end
     
     def recibejugador_calle(actual, todos)  
@@ -158,9 +161,8 @@ module Civitas
     def to_s
       case @tipo
       when Civitas::TipoCasilla::CALLE
-        '\nNombre: ' + @nombre.to_s +
-        '\nTipo: ' + @tipo.to_s +
-        '\nTitulo Propiedad: ' + @titulo.nombre.to_s
+        '\nNombre: ' + @titulo.nombre.to_s +
+        '\nTipo: ' + @tipo.to_s
       when Civitas::TipoCasilla::IMPUESTO
         '\nNombre: ' + @nombre.to_s +
         '\nTipo: ' + @tipo.to_s +

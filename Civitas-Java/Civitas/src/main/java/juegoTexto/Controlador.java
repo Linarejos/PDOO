@@ -44,9 +44,9 @@ public class Controlador {
                         Respuestas r = vista.comprar();
                         
                         if(r == Respuestas.SI){
-                                juego.comprar();
-                                juego.siguientePasoCompletado(siguiente);                            
+                            juego.comprar();                                                          
                         }
+                        juego.siguientePasoCompletado(siguiente);  
                     break;
                     case GESTIONAR:
                         vista.gestionar();

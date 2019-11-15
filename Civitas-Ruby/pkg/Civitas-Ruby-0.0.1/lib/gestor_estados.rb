@@ -18,39 +18,39 @@ module Civitas
       case estado
 
       when EstadosJuego::INICIO_TURNO
-        if (jugador.encarcelado)
-          op = OperacionesJuego::SALIR_CARCEL
+        if (jugador.isencarcelado)
+          op = Operaciones_juego::SALIR_CARCEL
         else
-          op = OperacionesJuego::AVANZAR
+          op = Operaciones_juego::AVANZAR
         end
 
       when EstadosJuego::DESPUES_CARCEL
-        op = OperacionesJuego::PASAR_TURNO
+        op = Operaciones_juego::PASAR_TURNO
 
       when EstadosJuego::DESPUES_AVANZAR
-        if (jugador.encarcelado)
-          op = OperacionesJuego::PASAR_TURNO
+        if (jugador.isencarcelado)
+          op = Operaciones_juego::PASAR_TURNO
         else
-          if (jugador.puedecomprar)
-            op = OperacionesJuego::COMPRAR
+          if (jugador.puedeComprar)
+            op = Operaciones_juego::COMPRAR
           else
             if (jugador.tienealgoquegestionar)
-              op = OperacionesJuego::GESTIONAR
+              op = Operaciones_juego::GESTIONAR
             else
-              op = OperacionesJuego::PASAR_TURNO
+              op = Operaciones_juego::PASAR_TURNO
             end
           end
         end
 
       when EstadosJuego::DESPUES_COMPRAR
         if (jugador.tienealgoquegestionar)
-          op = OperacionesJuego::GESTIONAR
+          op = Operaciones_juego::GESTIONAR
         else
-          op = OperacionesJuego::PASAR_TURNO
+          op = Operaciones_juego::PASAR_TURNO
         end
 
       when EstadosJuego::DESPUES_GESTIONAR
-        op = OperacionesJuego::PASAR_TURNO
+        op = Operaciones_juego::PASAR_TURNO
       end
 
       return op
@@ -64,45 +64,45 @@ module Civitas
       case estado
 
       when EstadosJuego::INICIO_TURNO
-        if (operacion==OperacionesJuego::SALIR_CARCEL)
+        if (operacion==Operaciones_juego::SALIR_CARCEL)
           siguiente = EstadosJuego::DESPUES_CARCEL
         else
-          if (operacion==OperacionesJuego::AVANZAR)
+          if (operacion==Operaciones_juego::AVANZAR)
             siguiente = EstadosJuego::DESPUES_AVANZAR
           end
         end
 
 
       when EstadosJuego::DESPUES_CARCEL
-        if (operacion==OperacionesJuego::PASAR_TURNO)
+        if (operacion==Operaciones_juego::PASAR_TURNO)
           siguiente = EstadosJuego::INICIO_TURNO
         end
 
       when EstadosJuego::DESPUES_AVANZAR
         case operacion
-          when OperacionesJuego::PASAR_TURNO
+          when Operaciones_juego::PASAR_TURNO
             siguiente = EstadosJuego::INICIO_TURNO
           when
-            OperacionesJuego::COMPRAR
+            Operaciones_juego::COMPRAR
               siguiente = EstadosJuego::DESPUES_COMPRAR
-          when OperacionesJuego::GESTIONAR
+          when Operaciones_juego::GESTIONAR
               siguiente = EstadosJuego::DESPUES_GESTIONAR
         end
 
 
       when EstadosJuego::DESPUES_COMPRAR
         #if (jugador.tiene_algo_que_gestionar)
-        if (operacion==OperacionesJuego::GESTIONAR)
+        if (operacion==Operaciones_juego::GESTIONAR)
           siguiente = EstadosJuego::DESPUES_GESTIONAR
         #  end
         else
-          if (operacion==OperacionesJuego::PASAR_TURNO)
+          if (operacion==Operaciones_juego::PASAR_TURNO)
             siguiente = EstadosJuego::INICIO_TURNO
           end
         end
 
       when EstadosJuego::DESPUES_GESTIONAR
-        if (operacion==OperacionesJuego::PASAR_TURNO)
+        if (operacion==Operaciones_juego::PASAR_TURNO)
           siguiente = EstadosJuego::INICIO_TURNO
         end
       end

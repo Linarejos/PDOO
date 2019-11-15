@@ -33,7 +33,7 @@ public class Dado {
     int tirar(){ 
         Random rand = new Random();
         if(!debug){
-            ultimoResultado = rand.nextInt(7);
+            ultimoResultado = rand.nextInt(4);
         }
         else
             ultimoResultado = 1;

@@ -23,17 +23,17 @@ module Civitas
     
     private
     
-    def correcto
+    def correcto_sin
       @casillas.length > @numCasillaCarcel && @tieneJuez
     end
     
     def correcto(numCasilla)
-      correcto && numCasilla < @casillas.length
+      correcto_sin && numCasilla < @casillas.length
     end
     
     public
     
-    attr_reader :numCasillaCarcel
+    attr_reader :numCasillaCarcel, :porSalida
     
     def getporsalida
       actual = @porSalida
@@ -83,7 +83,7 @@ module Civitas
     end
     
     def nuevaposicion(actual, tirada)
-      if !correcto
+      if !correcto_sin
         return -1
       end
       

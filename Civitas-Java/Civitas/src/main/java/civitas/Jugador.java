@@ -67,7 +67,7 @@ public class Jugador implements Comparable<Jugador>{
         if(debeSerEncarcelado()){
             moverACasilla(numCasillaCarcel);
             encarcelado = true;
-            Diario.getInstance().ocurreEvento("El jugador va directo a la cárcel");
+            Diario.getInstance().ocurreEvento("El jugador va directo a la carcel");
         }
         
         return encarcelado;
@@ -122,7 +122,7 @@ public class Jugador implements Comparable<Jugador>{
     boolean moverACasilla(int numCasilla){
         if(!isEncarcelado()){
             this.numCasillaActual = numCasilla;
-            puedeComprar = false;
+            puedeComprar = true;
             Diario.getInstance().ocurreEvento("Moviendose a la casilla " + numCasilla);
             return true;
         }
@@ -325,7 +325,7 @@ public class Jugador implements Comparable<Jugador>{
                 result = propiedad.construirCasa(this);
             }
             
-            Diario.getInstance().ocurreEvento("El jugador " + nombre + " construye hotel en la propiedad " + ip);
+            Diario.getInstance().ocurreEvento("El jugador " + nombre + " construye casa en la propiedad " + ip);
         }
         
         return result;

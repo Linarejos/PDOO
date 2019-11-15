@@ -39,7 +39,7 @@ module Civitas
     
     attr_accessor :saldo
     
-    protected :nombre, :saldo
+    protected :saldo
             
     public :saldo=, :propiedades
     
@@ -59,6 +59,10 @@ module Civitas
       @@CasasPorHotel
     end
     
+    def isencarcelado
+      @encarcelado
+    end
+    
     def cancelarhipoteca(ip)   
       result = false
       
@@ -75,7 +79,7 @@ module Civitas
           result = propiedad.cancelarhipoteca(self)
           
           if result
-            Diario.instance.ocurre_evento('El jugador ' + @nombre + 'cancela la hipoteca de la propiedad ' + ip)
+            Diario.instance.ocurre_evento('El jugador ' + @nombre + ' cancela la hipoteca de la propiedad ' + ip)
           end
         end
       end
@@ -131,9 +135,17 @@ module Civitas
         if existe
           propiedad = @propiedades[ip]
           puedo_edificar_casa = puedoedificarcasa(propiedad)
+          precio = propiedad.precioEdificar
+          
+          if puedogastar(precio) and propiedad.numCasas<@@CasasMax
+            puedo_edificar_casa = true
+          end
+          
           if puedo_edificar_casa
             result = propiedad.construircasa(self)
           end
+          
+          Diario.instance.ocurre_evento('El jugador ' + @nombre.to_s + " construye casa en la propiedad " + ip)
         end
       end
       
@@ -151,6 +163,12 @@ module Civitas
         propiedad = @propiedades[ip]
         puedo_edificar_hotel = puedoedificarhotel(propiedad)
         
+        precio = propiedad.precioEdificar
+          
+        if puedogastar(precio) and propiedad.numHoteles<@@HotelesMax and propiedad.numCasas>=@@CasasPorHotel
+          puedo_edificar_hotel = true
+        end
+          
         if puedo_edificar_hotel
           result = propiedad.construirhotel(self)
           casas_hotel = casas_por_hotel
@@ -176,7 +194,23 @@ module Civitas
       @encarcelado
     end
        
-    def hipotecar(ip)      
+    def hipotecar(ip)     
+      result = false
+      
+      if isencarcelado
+        result
+      end
+      
+      if existelapropiedad(ip)
+        propiedad = @propiedades[ip]
+        result = propiedad.hipotecar(ip)        
+      end
+      
+      if result
+        Diario.instance.ocurre_evento('El jugador ' + @nombre.to_s + ' hipoteca la propiedad ' + ip)
+      end
+      
+      result
     end
             
     def moveracasilla(numcasilla)
@@ -184,8 +218,8 @@ module Civitas
         false
       else
         @numCasillaActual = numcasilla
-        @puedeComprar = false
-        Diario.instance.ocurre_evento('Jugador cambiado de casilla')
+        @puedeComprar = true
+        Diario.instance.ocurre_evento('El jugador ha cambiado de casilla')
         true
       end
     end
@@ -322,8 +356,7 @@ module Civitas
     
     private
     def existelapropiedad(ip)
-      i = 0
-      loop do
+      for i in 0..@propiedades.size
         if @propiedades[i] == @propiedades[ip]
           true
         end

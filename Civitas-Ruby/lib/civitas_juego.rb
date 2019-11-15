@@ -29,24 +29,27 @@ module Civitas
     end
     
     def cancelarhipoteca(ip)
-      @jugadores[@indiceJugadorActual].cancelarhipoteca(ip)
+      getjugadoractual.cancelarhipoteca(ip)
     end
     
     def comprar      
-      jugador_actual = @jugadores[@indiceJugadorActual]
+      res = false
+      jugador_actual = getjugadoractual
       num_casilla_actual = jugador_actual.numCasillaActual
       casilla = @tablero.getcasilla(num_casilla_actual)
-      titulo = casilla.titulo
-      res = jugador_actual.comprar(titulo)
+      if casilla.nombre != 'Salida'
+        titulo = casilla.titulo
+        res = jugador_actual.comprar(titulo)
+      end
       res
     end
     
     def construircasa(ip)
-      @jugadores[@indiceJugadorActual].construircasa(ip)
+      getjugadoractual.construircasa(ip)
     end
     
     def construirhotel(ip)
-      @jugadores[@indiceJugadorActual].construirhotel(ip)
+      getjugadoractual.construirhotel(ip)
     end
     
     def finaldeljuego
@@ -99,28 +102,28 @@ module Civitas
     end
     
     def siguientepasocompletado(operacion)
-      @estado = @gestorestados.siguiente_estado(@jugadores[@indiceJugadorActual], @estado, operacion)
+      @estado = @gestorestados.siguiente_estado(getjugadoractual, @estado, operacion)
     end
     
     def vender(ip)
-      @jugadores[@indiceJugadorActual].vender(ip)
+      getjugadoractual.vender(ip)
     end
     
     private
     def avanzajugador
-      jugador_actual = @jugadores[@indiceJugador]  #1.1
+      jugador_actual = getjugadoractual  #1.1
       posicion_actual = jugador_actual.numCasillaActual #1.2
       tirada = Dado.instance.tirar  #1.3
       posicion_nueva = @tablero.nuevaposicion(posicion_actual, tirada)  #1.4
       casilla = @tablero.getcasilla(posicion_nueva)   #1.5
       contabilizarpasosporsalida(jugador_actual)  #1.6
-      jugador_acual.moveracasilla(posicion_nueva) #1.7
-      casilla.recibejugador(@indiceJugador, @jugadores) #1.8
+      jugador_actual.moveracasilla(posicion_nueva) #1.7
+      casilla.recibejugador(@indiceJugadorActual, @jugadores) #1.8
       contabilizarpasosporsalida(jugador_actual)  #1.9
     end
     
     def contabilizarpasosporsalida(jugadoractual)
-      if @tablero.PorSalida > 0
+      if @tablero.porSalida > 0
         jugadoractual.pasaporsalida
       end
     end

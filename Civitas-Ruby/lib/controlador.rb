@@ -33,22 +33,22 @@ module Civitas
           when Civitas::Operaciones_juego::COMPRAR
             r = @vista.comprar
             if r == Civitas::Respuestas::SI
-              @juego.comprar
-              @juego.siguientepasocompletado(siguiente)
+              @juego.comprar              
             end
+            @juego.siguientepasocompletado(siguiente)
           when Civitas::Operaciones_juego::GESTIONAR
             @vista.gestionar
-            lista_gestion = [Civitas::GestionesInmobiliarias::CANCELAR_HIPOTECA,
+            lista_gestion = [Civitas::GestionesInmobiliarias::VENDER,
+              Civitas::GestionesInmobiliarias::HIPOTECAR,
+              Civitas::GestionesInmobiliarias::CANCELAR_HIPOTECA,
               Civitas::GestionesInmobiliarias::CONSTRUIR_CASA,
               Civitas::GestionesInmobiliarias::CONSTRUIR_HOTEL,
-              Civitas::GestionesInmobiliarias::HIPOTECAR,
-              Civitas::GestionesInmobiliarias::TERMINAR,
-              Civitas::GestionesInmobiliarias::VENDER
+              Civitas::GestionesInmobiliarias::TERMINAR              
             ]
             
-            operacion = OperacionInmobiliaria.new(lista_gestion[@vista.iGestion], @vista.iPropiedad)
+            operacion = OperacionInmobiliaria.new(lista_gestion[@vista.get_gestion], @vista.get_propiedad)
             
-            case opeacion.iGestion
+            case operacion.gestion
             when Civitas::GestionesInmobiliarias::TERMINAR
               @juego.siguientepasocompletado(siguiente)
             when Civitas::GestionesInmobiliarias::CANCELAR_HIPOTECA

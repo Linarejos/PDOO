@@ -72,7 +72,7 @@ public class Casilla {
     
     private void informe(int iactual, ArrayList<Jugador> todos){
         Diario diario = Diario.getInstance();
-        diario.ocurreEvento("Jugador " + todos.get(iactual).getNombre() + "ha caido en la casilla " + toString());
+        diario.ocurreEvento("El jugador " + todos.get(iactual).getNombre() + " ha caido en la casilla " + toString());
     }
     
     private void recibeJugador_impuesto(int iactual, ArrayList<Jugador> todos){
@@ -149,9 +149,8 @@ public class Casilla {
                 return "\nNombre: " + this.nombre +
                        "\nTipo: " + this.tipo;                      
             default:
-                return "\nNombre: " + this.nombre +
-                   "\nTipo: " + this.tipo +
-                   "\nTitulo Propiedad: " + this.getTituloPropiedad().getNombre();
+                return "\nNombre: " + this.getTituloPropiedad().getNombre() +
+                   "\nTipo: " + this.tipo;
         }
         
     }
