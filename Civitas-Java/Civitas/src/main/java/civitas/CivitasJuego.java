@@ -83,18 +83,18 @@ public class CivitasJuego {
     }
     
     private void inicializarMazoSorpresas(Tablero tablero){
-        mazo.alMazo(new Sorpresa(TipoSorpresa.IRCARCEL, tablero));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.IRCARCEL, tablero));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.IRCASILLA, tablero, 4, "Ve a la casilla 4"));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.IRCASILLA, tablero, 12, "Ve a la casiila 12"));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR, -500, "Paga a otro jugador"));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR, 500, "Recibes dinero *-*"));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PORCASAHOTEL, 100, "Pagas por cada casa y hotel"));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PORJUGADOR, 50, "Recibes dinero de los demas"));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.SALIRCARCEL, mazo));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.SALIRCARCEL, mazo));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PORJUGADOR, -50, "Dale dinero a los demás"));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR, -100, "Pagas a la banca"));                           
+        mazo.alMazo(new SorpresaIRCARCEL(tablero));
+        mazo.alMazo(new SorpresaIRCARCEL(tablero));
+        mazo.alMazo(new SorpresaIRCASILLA(tablero, 4, "Ve a la casilla 4"));
+        mazo.alMazo(new SorpresaIRCASILLA(tablero, 12, "Ve a la casiila 12"));
+        mazo.alMazo(new SorpresaPAGARCOBRAR(-500, "Paga a otro jugador"));
+        mazo.alMazo(new SorpresaPAGARCOBRAR(500, "Recibes dinero *-*"));
+        mazo.alMazo(new SorpresaPORCASAHOTEL(100, "Pagas por cada casa y hotel"));
+        mazo.alMazo(new SorpresaPORJUGADOR(50, "Recibes dinero de los demas"));
+        mazo.alMazo(new SorpresaSALIRCARCEL(mazo));
+        mazo.alMazo(new SorpresaSALIRCARCEL(mazo));
+        mazo.alMazo(new SorpresaPORJUGADOR(-50, "Dale dinero a los demás"));
+        mazo.alMazo(new SorpresaPAGARCOBRAR(-100, "Pagas a la banca"));                           
     }
     
     private void contabilizarPasosPorSalida(Jugador jugadorActual){
