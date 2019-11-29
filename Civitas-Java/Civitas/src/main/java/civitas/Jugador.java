@@ -8,7 +8,6 @@ package civitas;
 import java.util.ArrayList;
 
 /**
- *
  * @author elena
  */
 public class Jugador implements Comparable<Jugador>{
