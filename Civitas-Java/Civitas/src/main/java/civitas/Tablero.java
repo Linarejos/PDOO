@@ -65,7 +65,7 @@ public class Tablero {
         return decremento_salida;
     }
     
-    void añadeCasilla (Casilla casilla){
+    void añadeCasilla(Casilla casilla){
         
         if(casillas.size() == numCasillaCarcel){
             Casilla carcel = new Casilla("Carcel");
@@ -88,7 +88,7 @@ public class Tablero {
         }
         
         if(!tieneJuez){
-            Casilla juez = new Casilla("Juez");
+            Casilla juez = new CasillaJuez(getCarcel(), "Juez");
             casillas.add(juez);
             tieneJuez = true;
         }            
