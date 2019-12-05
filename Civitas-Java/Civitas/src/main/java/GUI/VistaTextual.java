@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package juegoTexto;
+package GUI;
 
 import civitas.CivitasJuego;
 import civitas.Diario;
