@@ -29,6 +29,8 @@ public class TestP5 {
         Controlador controlador = new Controlador(juego, vista);
         
         vista.setCivitasJuego(juego);
+        
+        vista.actualizarVista();
     }
     
 }
