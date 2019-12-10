@@ -13,6 +13,7 @@ import civitas.CivitasJuego;
  */
 public class CivitasView extends javax.swing.JFrame {
     private CivitasJuego juego; //Instancia de la clase CivitasJuego
+    JugadorPanel jugadorPanel = new JugadorPanel();
     
     public void setCivitasJuego(CivitasJuego juego){
         this.juego = juego;
@@ -23,6 +24,15 @@ public class CivitasView extends javax.swing.JFrame {
      */
     public CivitasView() {
         initComponents();
+        
+        jugadorPanel = new JugadorPanel();
+        jPanel1.add(jugadorPanel);
+        repaint();
+        revalidate();
+    }
+    
+    public void actualizarVista(){
+        jugadorPanel.setJugador(juego.getJugadorActual());
     }
 
     /**
@@ -35,11 +45,14 @@ public class CivitasView extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Info Juego");
         jLabel1.setEnabled(false);
+
+        jPanel1.setToolTipText("contenedorVistaJugador");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -47,7 +60,9 @@ public class CivitasView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addContainerGap(342, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -55,8 +70,12 @@ public class CivitasView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
+
+        jPanel1.getAccessibleContext().setAccessibleName("contenedorVistaJugador");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -98,5 +117,6 @@ public class CivitasView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
