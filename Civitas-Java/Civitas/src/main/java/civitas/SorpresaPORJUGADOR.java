@@ -29,11 +29,11 @@ public class SorpresaPORJUGADOR extends Sorpresa{
             
             for(int i = 0; i < todos.size(); i++){
                 if(i != actual)
-                    aplicarAJugador(i, todos);
+                    aux.aplicarAJugador(i, todos);
             }            
             
             aux1 = new SorpresaPAGARCOBRAR(valor*(todos.size()-1), "Paga jugador actual");           
-            aplicarAJugador(actual, todos);
+            aux1.aplicarAJugador(actual, todos);
         }
     }
     

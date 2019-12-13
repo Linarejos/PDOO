@@ -81,7 +81,7 @@ public class Jugador implements Comparable<Jugador>{
         return false;
     }
     
-    private void perderSalvoConducto(){
+    public void perderSalvoConducto(){
         salvoconducto.usada();
         salvoconducto = null;
     }
@@ -129,7 +129,7 @@ public class Jugador implements Comparable<Jugador>{
         return false;
     }
     
-    private boolean puedoGastar(float precio){
+    boolean puedoGastar(float precio){
         if(!isEncarcelado()) return this.saldo >= precio;
         return false;
     }    
@@ -211,11 +211,11 @@ public class Jugador implements Comparable<Jugador>{
         return false;
     }
     
-    private int getCasasMax(){ return CasasMax; }
+    int getCasasMax(){ return CasasMax; }
     
     int getCasasPorHotel(){ return CasasPorHotel; }   
     
-    private int getHotelesMax(){ return HotelesMax; }
+    int getHotelesMax(){ return HotelesMax; }
     
     public String getNombre(){ return nombre; }
     

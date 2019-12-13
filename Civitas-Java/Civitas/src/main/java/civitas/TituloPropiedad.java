@@ -123,7 +123,7 @@ public class TituloPropiedad {
     }
     
     void actualizaPropietarioPorConversion(Jugador jugador){
-        throw new UnsupportedOperationException("No implementado"); 
+        propietario = jugador;
     }
     
     boolean cancelarHipoteca(Jugador jugador){
@@ -148,9 +148,11 @@ public class TituloPropiedad {
     
     public String getNombre(){ return this.nombre; }
     
-    int getNumCasas(){ return this.numCasas; }
+    //Cambiada visibilidad
+    public int getNumCasas(){ return this.numCasas; }
     
-    int getNumHoteles(){ return this.numHoteles; }
+    //Cambiada visibilidad
+    public int getNumHoteles(){ return this.numHoteles; }
     
     float getPrecioCompra(){ return this.precioCompra; }
     
