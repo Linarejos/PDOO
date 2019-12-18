@@ -59,23 +59,9 @@ module Civitas
       Diario.instance.ocurre_evento("Aplicando sorpresa a " + todos[actual].nombre)
     end
     
-    def aplicarajugador_iracasilla(actual, todos)
-      if jugadorcorrecto(actual, todos)
-        informe(actual, todos)
-        casillaactual = todos[actual].numCasillaActual
-        tirada = @tablero.calculartirada(casillaactual, @valor)
-        nuevapos = @tablero.nuevaposicion(casillaactual, tirada)
-        todos[actual].moveracasilla(nuevapos)
-        @tablero.getcasilla(nuevapos).recibejugador(@valor, todos)
-      end
-    end
     
-    def aplicarajugador_ircarcel(actual, todos)
-      if jugadorcorrecto(actual, todos)
-        informe(actual, todos)
-        todos[actual].encarcelar(5)
-      end
-    end
+    
+    
     
     def aplicarajugador_pagarcobrar(actual, todos)
       if jugadorcorrecto(actual,todos)
