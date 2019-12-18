@@ -21,6 +21,7 @@ public class CivitasJuego {
     private EstadosJuego estado;
     private GestorEstados gestorEstados;
     private ArrayList<Jugador> jugadores;
+    private int i = 0;
 
     public CivitasJuego(ArrayList<String> nombres){
         jugadores = new ArrayList();
@@ -32,7 +33,7 @@ public class CivitasJuego {
         gestorEstados = new GestorEstados();
         estado = gestorEstados.estadoInicial();
         
-        indiceJugador = Dado.getInstance().tirar();
+        indiceJugador = Dado.getInstance().quienEmpieza(jugadores.size()-1);
         mazo = new MazoSorpresas();
         this.inicializarTablero(mazo);
         this.inicializarMazoSorpresas(tablero);
@@ -128,7 +129,7 @@ public class CivitasJuego {
         for(Jugador j : jugadores){
             if(j.enBancarrota()) return true;
         }
-        return false;
+        return false;               
     }
     
     //Visibilidad cambiada

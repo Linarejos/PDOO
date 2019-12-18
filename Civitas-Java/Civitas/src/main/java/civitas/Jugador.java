@@ -378,7 +378,7 @@ public class Jugador implements Comparable<Jugador>{
               
     @Override
     public String toString(){
-        return "Nombre: " + this.nombre +
+        return "\nNombre: " + this.nombre +
                "\nSaldo: " + this.saldo +
                "\nEncarcelado: " + this.encarcelado +
                "\nCasilla Actual: " + this.numCasillaActual +

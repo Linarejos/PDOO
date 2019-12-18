@@ -6,6 +6,7 @@
 package GUI;
 
 import civitas.CivitasJuego;
+import civitas.Jugador;
 import civitas.OperacionesJuego;
 import javax.swing.JOptionPane;
 
@@ -15,11 +16,14 @@ import javax.swing.JOptionPane;
  */
 public class CivitasView extends javax.swing.JFrame {
     private CivitasJuego juego; //Instancia de la clase CivitasJuego
-    JugadorPanel jugadorPanel = new JugadorPanel();
+    private JugadorPanel jugadorPanel = new JugadorPanel();
+    private GestionarDialog gestionarD = new GestionarDialog(this, true);
     
     public void setCivitasJuego(CivitasJuego juego){
         this.juego = juego;
         this.setVisible(true); //La vista se pone visible
+        jLabel4.setVisible(false);
+        jTextArea1.setVisible(false);
     }
     
     public void mostrarSiguienteOperacion(OperacionesJuego operacion){
@@ -28,20 +32,13 @@ public class CivitasView extends javax.swing.JFrame {
     }
     
     public void mostrarEventos(){
-        DiarioDialog diarioD= new DiarioDialog(this); //crea la ventana del diario
+        DiarioDialog diarioD = new DiarioDialog(this); //crea la ventana del diario
     }
     
     public Respuestas comprar(){
         int opcion = JOptionPane.showConfirmDialog(null, "¿Quieres comprar la calle actual?", "Compra", JOptionPane.YES_NO_OPTION);
-        Respuestas r = null;
-        if(opcion == 0){
-            r = Respuestas.SI;
-        }
-        else{
-            r = Respuestas.NO;
-        }
         
-        return r;
+        return (Respuestas.values()[opcion]);
     }
     /**
      * Creates new form CivitasView
@@ -55,10 +52,7 @@ public class CivitasView extends javax.swing.JFrame {
         revalidate();
     }
     
-    public void actualizarVista(){
-        jLabel4.setVisible(false);
-        jTextArea1.setVisible(false); 
-        
+    public void actualizarVista(){       
         jugadorPanel.setJugador(juego.getJugadorActual());        
         jTextField1.setText(juego.getCasillaActual().toString());
         
@@ -71,6 +65,20 @@ public class CivitasView extends javax.swing.JFrame {
         
         repaint();
         revalidate();
+    }
+    
+    public int getGestion(){ return gestionarD.getGestion(); }
+    
+    public int getPropiedad(){ return gestionarD.getPropiedad(); }
+    
+    public void gestionar(){
+        gestionarD.gestionar(juego.getJugadorActual());
+        
+        gestionarD.pack();
+        gestionarD.repaint();
+        gestionarD.revalidate();
+        
+        gestionarD.setVisible(true);
     }
 
     /**
@@ -133,13 +141,13 @@ public class CivitasView extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1)
-                    .addComponent(jLabel4)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(226, Short.MAX_VALUE))
+                    .addComponent(jLabel4))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,22 +157,23 @@ public class CivitasView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                        .addGap(40, 40, 40))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                        .addGap(146, 146, 146))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(contenedorVistaJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         jPanel1.getAccessibleContext().setAccessibleName("contenedorVistaJugador");

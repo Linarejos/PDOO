@@ -25,12 +25,12 @@ public class Controlador {
         this.vista = vista;
     }
     
-    /*void juega(){
+    void juega(){
         vista.setCivitasJuego(juego);
         
         while(!juego.finalDelJuego()){
             vista.actualizarVista();
-            vista.pausa();           
+            //vista.pausa();           
             OperacionesJuego siguiente = juego.siguientePaso();
             
             vista.mostrarSiguienteOperacion(siguiente);
@@ -46,9 +46,11 @@ public class Controlador {
                         if(r == Respuestas.SI){
                             juego.comprar();                                                          
                         }
+                        
                         juego.siguientePasoCompletado(siguiente);  
+                        
                     break;
-                    case GESTIONAR:
+                    /*case GESTIONAR:
                         vista.gestionar();
                         OperacionInmobiliaria operacion_inmo = new OperacionInmobiliaria(GestionesInmobiliarias.values()[vista.getGestion()], vista.getPropiedad());     
                         
@@ -80,7 +82,7 @@ public class Controlador {
                             juego.salirCarcelTirando();
                         
                         juego.siguientePasoCompletado(siguiente);
-                    break;
+                    break;*/
                 }
             }
             else{
@@ -88,5 +90,5 @@ public class Controlador {
                 juego.ranking();
             }
         }
-    }*/
+    }
 }

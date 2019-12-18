@@ -31,7 +31,7 @@ public class Dado extends JDialog {
     timerDado = new Timer (50,diceAction);
     random=new Random();
     ultimoResultado = -1;
-    debug = true;   //false
+    debug = false;   //false
     this.addWindowListener(new java.awt.event.WindowAdapter() {
       @Override
       public void windowClosing(java.awt.event.WindowEvent e) {
