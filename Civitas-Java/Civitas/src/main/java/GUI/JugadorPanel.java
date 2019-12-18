@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author eleni
+ * @author elena
  */
 public class JugadorPanel extends javax.swing.JPanel {
     private Jugador jugador;
@@ -45,11 +45,11 @@ public class JugadorPanel extends javax.swing.JPanel {
         // Se recorre la lista de propiedades para ir creando sus vistas individuales y
         // añadirlas al panel
         for (TituloPropiedad t : lista) {
-        PropiedadPanel vistaPropiedad = new PropiedadPanel();
-        vistaPropiedad.setPropiedad(t);
+            PropiedadPanel vistaPropiedad = new PropiedadPanel();
+            vistaPropiedad.setPropiedad(t);
 
-        jPanel1.add(vistaPropiedad);
-        vistaPropiedad.setVisible(true);
+            jPanel1.add(vistaPropiedad);
+            vistaPropiedad.setVisible(true);
         }
         
         // Se fuerza la actualización visual del panel propiedades y del panel del jugador

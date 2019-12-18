@@ -106,9 +106,6 @@ class VistaTextual {
         if(iGestion != 5 && !propiedades.isEmpty()){
             iPropiedad = menu("¿Qué propiedad desea gestionar?", propiedades);
         }
-        else{
-            System.out.println("No tienes propiedades");
-        }
                 
     }
 

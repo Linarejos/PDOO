@@ -22,6 +22,9 @@ public class CasillaCalle extends Casilla{
     TituloPropiedad getTituloPropiedad(){ return this.tituloPropiedad; }
     
     @Override
+    public boolean soyCasillaCalle(){ return true; }
+    
+    @Override
     void recibeJugador(int iactual, ArrayList<Jugador> todos){
         if(jugadorCorrecto(iactual, todos)){
            super.informe(iactual, todos);

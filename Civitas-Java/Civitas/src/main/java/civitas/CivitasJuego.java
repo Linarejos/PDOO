@@ -161,8 +161,9 @@ public class CivitasJuego {
         boolean res = false;
         Jugador jugadorActual = jugadores.get(indiceJugador);
         int numCasillaActual = jugadorActual.getNumCasillaActual();
-        CasillaCalle casilla = (CasillaCalle) tablero.getCasilla(numCasillaActual);
-        if(casilla.getNombre() != "Salida"){
+        
+        if(tablero.getCasilla(numCasillaActual).soyCasillaCalle()){
+            CasillaCalle casilla = (CasillaCalle) tablero.getCasilla(numCasillaActual);
             TituloPropiedad titulo = casilla.getTituloPropiedad();
             res = jugadorActual.comprar(titulo);
         }               

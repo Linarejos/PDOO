@@ -18,7 +18,8 @@ public class CasillaImpuesto extends Casilla{
         super(nombre);
         this.importe = cantidad;
     }
-    
+    @Override
+    public boolean soyCasillaCalle(){ return false; }
     @Override
     void recibeJugador(int iactual, ArrayList<Jugador> todos){
         if(jugadorCorrecto(iactual, todos)){

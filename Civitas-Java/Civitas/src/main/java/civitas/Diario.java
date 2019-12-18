@@ -21,7 +21,7 @@ public class Diario {
         return instance;
     }
   
-    private Diario () {
+    public Diario () {
         eventos = new ArrayList<>();
     }
   

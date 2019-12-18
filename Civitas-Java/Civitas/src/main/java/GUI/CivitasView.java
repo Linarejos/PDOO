@@ -9,6 +9,7 @@ import civitas.CivitasJuego;
 import civitas.Jugador;
 import civitas.OperacionesJuego;
 import civitas.SalidasCarcel;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,6 +30,7 @@ public class CivitasView extends javax.swing.JFrame {
     
     public void mostrarSiguienteOperacion(OperacionesJuego operacion){
         jTextField2.setText("" + operacion);
+        jTextField2.setVisible(true);
         actualizarVista();
     }
     
@@ -66,12 +68,19 @@ public class CivitasView extends javax.swing.JFrame {
     public void actualizarVista(){       
         jugadorPanel.setJugador(juego.getJugadorActual());        
         jTextField1.setText(juego.getCasillaActual().toString());
-        
+        jugadorPanel.setVisible(true);
+                
         if(juego.finalDelJuego()){
             jLabel4.setVisible(true);
-            jTextArea1.setVisible(true);
             
-            jTextArea1.setText("" + juego.ranking());
+            ArrayList<Jugador> rank = juego.ranking(); 
+            String r = "";
+            for (int i = 0; i < rank.size(); i++){
+                r = r + rank.get(i).toString() + "\n"; 
+            }
+            
+            jTextArea1.setText(r);
+            jTextArea1.setVisible(true);
         }
         
         repaint();

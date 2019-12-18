@@ -22,6 +22,8 @@ public class Casilla {
     
     public String getNombre(){ return nombre; }
     
+    public boolean soyCasillaCalle(){ return false; }
+    
     void informe(int iactual, ArrayList<Jugador> todos){
         Diario diario = Diario.getInstance();
         diario.ocurreEvento("El jugador " + todos.get(iactual).getNombre() + " ha caido en la casilla " + toString());

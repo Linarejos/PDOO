@@ -12,13 +12,14 @@ import java.util.ArrayList;
  * @date 29/11/2019
  */
 public class CasillaJuez extends Casilla{
-    private static int carcel = -1;
+    private static int carcel = 5;
     
     CasillaJuez(int numCasillaCarcel, String nombre){
         super(nombre);
         this.carcel = numCasillaCarcel;
     }
-    
+    @Override
+    public boolean soyCasillaCalle(){ return false; }
     @Override
     void recibeJugador(int iactual, ArrayList<Jugador> todos){
         if(jugadorCorrecto(iactual, todos)){

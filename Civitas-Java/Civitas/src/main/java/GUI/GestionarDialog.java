@@ -24,7 +24,7 @@ public class GestionarDialog extends javax.swing.JDialog {
     public GestionarDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+        setLocationRelativeTo(null);
         gestionElegida = -1;
         propiedadElegida = -1;
     }
@@ -50,8 +50,13 @@ public class GestionarDialog extends javax.swing.JDialog {
     
     public void setPropiedades(Jugador jugador){
         DefaultListModel prop = new DefaultListModel<>(); // datos para la lista
+        ArrayList<String> nombres = new ArrayList<>();
         
         for (TituloPropiedad s: jugador.getPropiedades()){
+            nombres.add(s.getNombre());  //se completan los datos 
+        } 
+        
+        for (String s: nombres){
             prop.addElement(s);
         } //se completan los datos
         

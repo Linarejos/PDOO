@@ -8,11 +8,12 @@ package GUI;
 import civitas.Diario;
 
 /**
- *
- * @author eleni
+ * @author elena
+ * @date 18/12/2019
  */
 public class DiarioDialog extends javax.swing.JDialog {
-    private Diario diario = Diario.getInstance();
+    private Diario diario = new Diario();
+    
     /**
      * Creates new form DiarioDialog
      */
@@ -25,17 +26,13 @@ public class DiarioDialog extends javax.swing.JDialog {
     }
     
     public void mostrarEventos(){
-        if(diario.eventosPendientes()){
-            jTextArea1.setText("");
-            while(diario.eventosPendientes()){
-                jTextArea1.setText(diario.leerEvento() + "\n");
-            }
-
-            jTextArea1.setVisible(true);
+        String texto = "";
+        
+        while(Diario.getInstance().eventosPendientes()){
+            texto = texto + Diario.getInstance().leerEvento() + "\n";                
         }
-        else{
-            jTextArea1.setVisible(false);
-        }
+        jTextArea1.setText(texto);
+        this.setVisible(true);
         
         repaint();
         revalidate();
@@ -62,7 +59,6 @@ public class DiarioDialog extends javax.swing.JDialog {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setEnabled(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton1.setText("Ok");
@@ -79,12 +75,10 @@ public class DiarioDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -96,7 +90,7 @@ public class DiarioDialog extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(jButton1))
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

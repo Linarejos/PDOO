@@ -37,6 +37,9 @@ public class PropiedadPanel extends javax.swing.JPanel {
         if(propiedad.getHipotecado()) hipotecado = "Sí";
         else hipotecado = "No";
         jTextField4.setText(hipotecado);
+        
+        repaint();
+        revalidate();
     }
 
     /**

@@ -17,7 +17,8 @@ public class CasillaSorpresa extends Casilla{
         super(nombre);
         this.mazo = mazo;
     }
-    
+    @Override
+    public boolean soyCasillaCalle(){ return false; }
     @Override
     void recibeJugador(int iactual, ArrayList<Jugador> todos){
         if(jugadorCorrecto(iactual, todos)){
