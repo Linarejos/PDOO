@@ -50,7 +50,7 @@ public class Controlador {
                         juego.siguientePasoCompletado(siguiente);  
                         
                     break;
-                    /*case GESTIONAR:
+                    case GESTIONAR:
                         vista.gestionar();
                         OperacionInmobiliaria operacion_inmo = new OperacionInmobiliaria(GestionesInmobiliarias.values()[vista.getGestion()], vista.getPropiedad());     
                         
@@ -82,7 +82,7 @@ public class Controlador {
                             juego.salirCarcelTirando();
                         
                         juego.siguientePasoCompletado(siguiente);
-                    break;*/
+                    break;
                 }
             }
             else{

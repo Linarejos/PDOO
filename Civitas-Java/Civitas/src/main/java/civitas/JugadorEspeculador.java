@@ -22,6 +22,9 @@ public class JugadorEspeculador extends Jugador{
     }
     
     @Override
+    public boolean esEspeculador(){ return true; }
+    
+    @Override
     int getCasasMax(){ return super.getCasasMax()*FactorEspeculador; }
     
     @Override

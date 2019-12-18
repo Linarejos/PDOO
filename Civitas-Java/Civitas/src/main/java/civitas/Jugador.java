@@ -19,7 +19,7 @@ public class Jugador implements Comparable<Jugador>{
     private String nombre;
     private int numCasillaActual;
     protected static float PasoPorSalida = 1000;
-    protected static float PrecioLibertad = 200;
+    protected static float PrecioLibertad = 500;
     private boolean puedeComprar;
     private float saldo;
     private static float SaldoInicial = 7500;
@@ -45,6 +45,8 @@ public class Jugador implements Comparable<Jugador>{
         this.propiedades = otro.propiedades;
         this.salvoconducto = otro.salvoconducto;
     }
+    
+    public boolean esEspeculador(){ return false; }
     
     protected boolean debeSerEncarcelado(){ 
         boolean debeser = false;

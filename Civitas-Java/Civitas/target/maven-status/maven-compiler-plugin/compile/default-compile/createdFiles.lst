@@ -1,10 +1,17 @@
 civitas\TestP1.class
 civitas\EstadosJuego.class
 civitas\MazoSorpresas.class
+GUI\GestionarDialog$3.class
+GUI\GestionarDialog.class
 civitas\Diario.class
+GUI\GestionarDialog$6.class
 GUI\JugadorPanel$1.class
 civitas\Casilla.class
 GUI\Controlador$1.class
+GUI\GestionarDialog$2.class
+GUI\GestionarDialog$5.class
 civitas\TipoSorpresa.class
+GUI\GestionarDialog$1.class
 civitas\Sorpresa.class
+GUI\GestionarDialog$4.class
 civitas\Tablero.class

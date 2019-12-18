@@ -8,6 +8,7 @@ package GUI;
 import civitas.CivitasJuego;
 import civitas.Jugador;
 import civitas.OperacionesJuego;
+import civitas.SalidasCarcel;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,6 +40,16 @@ public class CivitasView extends javax.swing.JFrame {
         int opcion = JOptionPane.showConfirmDialog(null, "¿Quieres comprar la calle actual?", "Compra", JOptionPane.YES_NO_OPTION);
         
         return (Respuestas.values()[opcion]);
+    }
+    
+    public SalidasCarcel salirCarcel(){
+        String[] opciones= {"Pagando", "Tirando"};
+        
+        int respuesta= JOptionPane.showOptionDialog(null, "¿Cómo quieres salir de la cárcel?",
+        "Salir de la cárcel", JOptionPane.DEFAULT_OPTION,
+        JOptionPane.QUESTION_MESSAGE,null, opciones, opciones[0] );
+        
+        return (SalidasCarcel.values()[respuesta]);
     }
     /**
      * Creates new form CivitasView
@@ -102,6 +113,7 @@ public class CivitasView extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 700));
 
         jLabel1.setText("Info Juego");
         jLabel1.setEnabled(false);

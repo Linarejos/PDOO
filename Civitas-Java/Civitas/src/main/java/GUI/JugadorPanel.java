@@ -18,7 +18,6 @@ public class JugadorPanel extends javax.swing.JPanel {
     
     public void setJugador(Jugador jugador){
         this.jugador = jugador;
-        String encarcelado = " ";
         
         //Atributo nombre
         jTextField1.setText(jugador.getNombre());
@@ -28,12 +27,12 @@ public class JugadorPanel extends javax.swing.JPanel {
         jTextField2.setText(saldo);
         
         //Atributo encarcelado
-        if(jugador.isEncarcelado()) encarcelado = "Sí";
-        else encarcelado = "No";
-        jTextField3.setText(encarcelado);
+        if(jugador.isEncarcelado()) jTextField3.setText("Sí"); 
+        jTextField3.setText("No"); 
         
         //Atributo especulador
-        
+        if(jugador.esEspeculador()) jTextField4.setText("Sí");
+        else jTextField4.setText("No");
         
         rellenaPropiedades(jugador.getPropiedades());
         
@@ -52,6 +51,7 @@ public class JugadorPanel extends javax.swing.JPanel {
         jPanel1.add(vistaPropiedad);
         vistaPropiedad.setVisible(true);
         }
+        
         // Se fuerza la actualización visual del panel propiedades y del panel del jugador
         repaint();
         revalidate();
