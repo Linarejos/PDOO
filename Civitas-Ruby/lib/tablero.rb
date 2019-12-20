@@ -14,7 +14,7 @@ module Civitas
       end
       
       @casillas = Array.new
-      salida = Casilla.new_casilla('Salida')
+      salida = Casilla.new('Salida')
       @casillas << salida 
       
       @porSalida = 0

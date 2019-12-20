@@ -19,7 +19,7 @@ public class Jugador implements Comparable<Jugador>{
     private String nombre;
     private int numCasillaActual;
     protected static float PasoPorSalida = 1000;
-    protected static float PrecioLibertad = 500;
+    protected static float PrecioLibertad = 200;
     private boolean puedeComprar;
     private float saldo;
     private static float SaldoInicial = 7500;

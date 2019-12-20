@@ -43,11 +43,17 @@ module Civitas
             
     public :saldo=, :propiedades
     
-    def self.casas_max
+    def es_especulador
+      false
+    end
+    
+    #Visibilidad cambiada
+    def casas_max
       @@CasasMax
     end
     
-    def self.hoteles_max
+    #Visibilidad cambiada
+    def hoteles_max
       @@HotelesMax
     end
     
@@ -364,11 +370,6 @@ module Civitas
       false
     end
     
-    def perdersalvoconducto
-      @salvoconducto.usada
-      @salvoconducto = nil
-    end
-    
     def puedesalircarcelpagando
       @saldo >= @@PrecioLibertad
     end
@@ -399,12 +400,19 @@ module Civitas
       puedo_edificar_hotel
     end
     
+    public 
+    #Visibilidad cambiada
     def puedogastar(precio)
       if isencarcelado
         false
       else
         @saldo >= precio
       end
+    end
+    
+    def perdersalvoconducto
+      @salvoconducto.usada
+      @salvoconducto = nil
     end
   end
 end
